@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cp.desktop.swing;
+package org.cp.desktop.swing.support;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -37,20 +37,28 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
 import org.cp.desktop.awt.image.ImageUtils;
+import org.cp.elements.lang.annotation.NotNull;
 
-public class GraphicsUtil extends ImageUtils {
+/**
+ * Abstract utility class used to process {@link Graphics2D graphics}.
+ *
+ * @author John Blum
+ * @see org.cp.desktop.awt.image.ImageUtils
+ */
+@SuppressWarnings("unused")
+public abstract class GraphicsUtil extends ImageUtils {
 
   private static final Color DEFAULT_COLOR = Color.black;
 
-  private static final RenderingHints ANTIALIASED_RENDERING =
+  private static final RenderingHints ANTI_ALIASED_RENDERING =
     new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
   private static final Stroke DEFAULT_STROKE = new
     BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);
 
   /**
-   * Protected constructor used to allow this class to be extended, but to disallow any instances of the class
-   * from being created.  This is a utility class that has no internal state, therefore creating an instance
+   * Default, protected constructor used to allow this class to be extended, but not allow any instances of the class
+   * to be created. This is a utility class that has no internal state, therefore creating an instance of this class
    * would be a waste of memory resources.
    */
   protected GraphicsUtil() { }
@@ -60,7 +68,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundingBox a Dimension object specifying the area in which to draw the double left arrows.
    * @return an Image with two left arrows drawn within the bounded area.
    */
-  public static Image drawDoubleLeftArrow(Dimension boundingBox) {
+  public static @NotNull Image drawDoubleLeftArrow(@NotNull Dimension boundingBox) {
     return drawDoubleLeftArrow(boundingBox, DEFAULT_COLOR);
   }
 
@@ -70,19 +78,19 @@ public class GraphicsUtil extends ImageUtils {
    * @param arrowColor a Color object specifying the color of the arrow.
    * @return an Image with two left arrows drawn within the bounded area.
    */
-  public static Image drawDoubleLeftArrow(Dimension boundingBox, Color arrowColor) {
+  public static @NotNull Image drawDoubleLeftArrow(@NotNull Dimension boundingBox, @NotNull Color arrowColor) {
 
     Image imageBuffer = new BufferedImage(boundingBox.width, boundingBox.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) imageBuffer.getGraphics();
+    Graphics2D graphics = (Graphics2D) imageBuffer.getGraphics();
 
-    g2.setPaint(arrowColor);
-    g2.setRenderingHints(ANTIALIASED_RENDERING);
-    g2.setStroke(DEFAULT_STROKE);
-    g2.draw(new Line2D.Double(0.0, (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), 0.0));
-    g2.draw(new Line2D.Double(0.0, (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), boundingBox.getHeight()));
-    g2.draw(new Line2D.Double((boundingBox.getWidth() / 2.0), (boundingBox.getHeight() / 2.0), boundingBox.getWidth(), 0.0));
-    g2.draw(new Line2D.Double((boundingBox.getWidth() / 2.0), (boundingBox.getHeight() / 2.0), boundingBox.getWidth(), boundingBox.getHeight()));
+    graphics.setPaint(arrowColor);
+    graphics.setRenderingHints(ANTI_ALIASED_RENDERING);
+    graphics.setStroke(DEFAULT_STROKE);
+    graphics.draw(new Line2D.Double(0.0, (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), 0.0));
+    graphics.draw(new Line2D.Double(0.0, (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), boundingBox.getHeight()));
+    graphics.draw(new Line2D.Double((boundingBox.getWidth() / 2.0), (boundingBox.getHeight() / 2.0), boundingBox.getWidth(), 0.0));
+    graphics.draw(new Line2D.Double((boundingBox.getWidth() / 2.0), (boundingBox.getHeight() / 2.0), boundingBox.getWidth(), boundingBox.getHeight()));
 
     return imageBuffer;
   }
@@ -92,7 +100,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundingBox a Dimension object specifying the area in which to draw the double right arrows.
    * @return an Image with two right arrows drawn within the bounded area.
    */
-  public static Image drawDoubleRightArrow(Dimension boundingBox) {
+  public static @NotNull Image drawDoubleRightArrow(@NotNull Dimension boundingBox) {
     return drawDoubleRightArrow(boundingBox, DEFAULT_COLOR);
   }
 
@@ -102,19 +110,19 @@ public class GraphicsUtil extends ImageUtils {
    * @param arrowColor a Color object specifying the color of the arrow.
    * @return an Image with two right arrows drawn within the bounded area.
    */
-  public static Image drawDoubleRightArrow(Dimension boundingBox, Color arrowColor) {
+  public static @NotNull Image drawDoubleRightArrow(@NotNull Dimension boundingBox, @NotNull Color arrowColor) {
 
     Image imageBuffer = new BufferedImage(boundingBox.width, boundingBox.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) imageBuffer.getGraphics();
+    Graphics2D graphics = (Graphics2D) imageBuffer.getGraphics();
 
-    g2.setPaint(arrowColor);
-    g2.setRenderingHints(ANTIALIASED_RENDERING);
-    g2.setStroke(DEFAULT_STROKE);
-    g2.draw(new Line2D.Double(0.0, 0.0, (boundingBox.getWidth() / 2.0), (boundingBox.getHeight() / 2.0)));
-    g2.draw(new Line2D.Double(0.0, boundingBox.getHeight(), (boundingBox.getWidth() / 2.0), (boundingBox.getHeight() / 2.0)));
-    g2.draw(new Line2D.Double((boundingBox.getWidth() / 2.0), 0.0, boundingBox.getWidth(), (boundingBox.getHeight() / 2.0)));
-    g2.draw(new Line2D.Double((boundingBox.getWidth() / 2.0), boundingBox.getHeight(), boundingBox.getWidth(), (boundingBox.getHeight() / 2.0)));
+    graphics.setPaint(arrowColor);
+    graphics.setRenderingHints(ANTI_ALIASED_RENDERING);
+    graphics.setStroke(DEFAULT_STROKE);
+    graphics.draw(new Line2D.Double(0.0, 0.0, (boundingBox.getWidth() / 2.0), (boundingBox.getHeight() / 2.0)));
+    graphics.draw(new Line2D.Double(0.0, boundingBox.getHeight(), (boundingBox.getWidth() / 2.0), (boundingBox.getHeight() / 2.0)));
+    graphics.draw(new Line2D.Double((boundingBox.getWidth() / 2.0), 0.0, boundingBox.getWidth(), (boundingBox.getHeight() / 2.0)));
+    graphics.draw(new Line2D.Double((boundingBox.getWidth() / 2.0), boundingBox.getHeight(), boundingBox.getWidth(), (boundingBox.getHeight() / 2.0)));
 
     return imageBuffer;
   }
@@ -124,7 +132,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundingBox a Dimension object specifying the area in which to draw the down arrow.
    * @return an Image with an arrow pointing down drawn within the bounded area.
    */
-  public static Image drawDownArrow(Dimension boundingBox) {
+  public static @NotNull Image drawDownArrow(@NotNull Dimension boundingBox) {
     return drawDownArrow(boundingBox, DEFAULT_COLOR);
   }
 
@@ -134,17 +142,17 @@ public class GraphicsUtil extends ImageUtils {
    * @param arrowColor a Color object specifying the color of the arrow.
    * @return an Image with an arrow pointing down drawn within the bounded area.
    */
-  public static Image drawDownArrow(Dimension boundingBox, Color arrowColor) {
+  public static @NotNull Image drawDownArrow(@NotNull Dimension boundingBox, @NotNull Color arrowColor) {
 
     Image imageBuffer = new BufferedImage(boundingBox.width, boundingBox.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) imageBuffer.getGraphics();
+    Graphics2D graphics = (Graphics2D) imageBuffer.getGraphics();
 
-    g2.setPaint(arrowColor);
-    g2.setRenderingHints(ANTIALIASED_RENDERING);
-    g2.setStroke(DEFAULT_STROKE);
-    g2.draw(new Line2D.Double(0.0, (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), boundingBox.getHeight()));
-    g2.draw(new Line2D.Double(boundingBox.getWidth(), (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), boundingBox.getHeight()));
+    graphics.setPaint(arrowColor);
+    graphics.setRenderingHints(ANTI_ALIASED_RENDERING);
+    graphics.setStroke(DEFAULT_STROKE);
+    graphics.draw(new Line2D.Double(0.0, (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), boundingBox.getHeight()));
+    graphics.draw(new Line2D.Double(boundingBox.getWidth(), (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), boundingBox.getHeight()));
 
     return imageBuffer;
   }
@@ -154,7 +162,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundingBox a Dimension object specifying the area in which to draw the left arrow.
    * @return an Image with an arrow pointing left drawn within the bounded area.
    */
-  public static Image drawLeftArrow(Dimension boundingBox) {
+  public static @NotNull Image drawLeftArrow(@NotNull Dimension boundingBox) {
     return drawLeftArrow(boundingBox, DEFAULT_COLOR);
   }
 
@@ -164,17 +172,17 @@ public class GraphicsUtil extends ImageUtils {
    * @param arrowColor a Color object specifying the color of the arrow.
    * @return an Image with an arrow pointing left drawn within the bounded area.
    */
-  public static Image drawLeftArrow(Dimension boundingBox, Color arrowColor) {
+  public static @NotNull Image drawLeftArrow(@NotNull Dimension boundingBox, @NotNull Color arrowColor) {
 
     Image imageBuffer = new BufferedImage(boundingBox.width, boundingBox.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) imageBuffer.getGraphics();
+    Graphics2D graphics = (Graphics2D) imageBuffer.getGraphics();
 
-    g2.setPaint(arrowColor);
-    g2.setRenderingHints(ANTIALIASED_RENDERING);
-    g2.setStroke(DEFAULT_STROKE);
-    g2.draw(new Line2D.Double(0, (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), 0));
-    g2.draw(new Line2D.Double(0, (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), boundingBox.getHeight()));
+    graphics.setPaint(arrowColor);
+    graphics.setRenderingHints(ANTI_ALIASED_RENDERING);
+    graphics.setStroke(DEFAULT_STROKE);
+    graphics.draw(new Line2D.Double(0, (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), 0));
+    graphics.draw(new Line2D.Double(0, (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), boundingBox.getHeight()));
 
     return imageBuffer;
   }
@@ -184,7 +192,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundingBox a Dimension object specifying the area in which to draw the right arrow.
    * @return an Image with an arrow pointing right drawn within the bounded area.
    */
-  public static Image drawRightArrow(Dimension boundingBox) {
+  public static @NotNull Image drawRightArrow(@NotNull Dimension boundingBox) {
     return drawRightArrow(boundingBox, DEFAULT_COLOR);
   }
 
@@ -194,17 +202,17 @@ public class GraphicsUtil extends ImageUtils {
    * @param arrowColor a Color object specifying the color of the arrow.
    * @return an Image with an arrow pointing right drawn within the bounded area.
    */
-  public static Image drawRightArrow(Dimension boundingBox, Color arrowColor) {
+  public static @NotNull Image drawRightArrow(@NotNull Dimension boundingBox, @NotNull Color arrowColor) {
 
     Image imageBuffer = new BufferedImage(boundingBox.width, boundingBox.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) imageBuffer.getGraphics();
+    Graphics2D graphics = (Graphics2D) imageBuffer.getGraphics();
 
-    g2.setPaint(arrowColor);
-    g2.setRenderingHints(ANTIALIASED_RENDERING);
-    g2.setStroke(DEFAULT_STROKE);
-    g2.draw(new Line2D.Double((boundingBox.getWidth() / 2.0), 0, boundingBox.getWidth(), (boundingBox.getHeight() / 2.0)));
-    g2.draw(new Line2D.Double((boundingBox.getWidth() / 2.0), boundingBox.getHeight(), boundingBox.getWidth(), (boundingBox.getHeight() / 2.0)));
+    graphics.setPaint(arrowColor);
+    graphics.setRenderingHints(ANTI_ALIASED_RENDERING);
+    graphics.setStroke(DEFAULT_STROKE);
+    graphics.draw(new Line2D.Double((boundingBox.getWidth() / 2.0), 0, boundingBox.getWidth(), (boundingBox.getHeight() / 2.0)));
+    graphics.draw(new Line2D.Double((boundingBox.getWidth() / 2.0), boundingBox.getHeight(), boundingBox.getWidth(), (boundingBox.getHeight() / 2.0)));
 
     return imageBuffer;
   }
@@ -214,7 +222,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundingBox a Dimension object specifying the area in which to draw the up arrow.
    * @return an Image with an arrow pointing up drawn within the bounded area.
    */
-  public static Image drawUpArrow(Dimension boundingBox) {
+  public static @NotNull Image drawUpArrow(@NotNull Dimension boundingBox) {
     return drawUpArrow(boundingBox, DEFAULT_COLOR);
   }
 
@@ -224,17 +232,17 @@ public class GraphicsUtil extends ImageUtils {
    * @param arrowColor a Color object specifying the color of the arrow.
    * @return an Image with an arrow pointing up drawn within the bounded area.
    */
-  public static Image drawUpArrow(Dimension boundingBox, Color arrowColor) {
+  public static @NotNull Image drawUpArrow(@NotNull Dimension boundingBox, @NotNull Color arrowColor) {
 
     Image imageBuffer = new BufferedImage(boundingBox.width, boundingBox.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) imageBuffer.getGraphics();
+    Graphics2D graphics = (Graphics2D) imageBuffer.getGraphics();
 
-    g2.setPaint(arrowColor);
-    g2.setRenderingHints(ANTIALIASED_RENDERING);
-    g2.setStroke(DEFAULT_STROKE);
-    g2.draw(new Line2D.Double(0, (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), 0));
-    g2.draw(new Line2D.Double(boundingBox.getWidth(), (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), 0));
+    graphics.setPaint(arrowColor);
+    graphics.setRenderingHints(ANTI_ALIASED_RENDERING);
+    graphics.setStroke(DEFAULT_STROKE);
+    graphics.draw(new Line2D.Double(0, (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), 0));
+    graphics.draw(new Line2D.Double(boundingBox.getWidth(), (boundingBox.getHeight() / 2.0), (boundingBox.getWidth() / 2.0), 0));
 
     return imageBuffer;
   }
@@ -244,7 +252,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundingBox a Dimension object specifying the area in which to paint two left arrows.
    * @return an Image of two arrows pointing left filled in the bounded area.
    */
-  public static Image fillDoubleLeftArrow(Dimension boundingBox) {
+  public static @NotNull Image fillDoubleLeftArrow(@NotNull Dimension boundingBox) {
     return fillDoubleLeftArrow(boundingBox, DEFAULT_COLOR);
   }
 
@@ -254,26 +262,27 @@ public class GraphicsUtil extends ImageUtils {
    * @param arrowColor a Color object specifying the color of the arrow.
    * @return an Image of two arrows pointing left filled in the bounded area.
    */
-  public static Image fillDoubleLeftArrow(Dimension boundingBox, Color arrowColor) {
+  public static @NotNull Image fillDoubleLeftArrow(@NotNull Dimension boundingBox, @NotNull Color arrowColor) {
 
     Image imageBuffer = new BufferedImage(boundingBox.width, boundingBox.height, BufferedImage.TYPE_INT_ARGB);
-    Graphics2D g2 = (Graphics2D) imageBuffer.getGraphics();
+
+    Graphics2D graphics = (Graphics2D) imageBuffer.getGraphics();
 
     GeneralPath path = new GeneralPath();
 
-    path.moveTo(0, boundingBox.height / 2);
-    path.lineTo(boundingBox.width / 2, 0);
-    path.lineTo(boundingBox.width / 2, boundingBox.height / 2);
+    path.moveTo(0, boundingBox.height / 2.0f);
+    path.lineTo(boundingBox.width / 2.0f, 0);
+    path.lineTo(boundingBox.width / 2.0f, boundingBox.height / 2.0f);
     path.lineTo(boundingBox.width, 0);
     path.lineTo(boundingBox.width, boundingBox.height);
-    path.lineTo(boundingBox.width / 2, boundingBox.height / 2);
-    path.lineTo(boundingBox.width / 2, boundingBox.height);
+    path.lineTo(boundingBox.width / 2.0f, boundingBox.height / 2.0f);
+    path.lineTo(boundingBox.width / 2.0f, boundingBox.height);
     path.closePath();
     //path.transform(AffineTransform.getTranslateInstance(getXOffset(viewableArea, boundingBox), getYOffset(viewableArea, boundingBox)));
 
-    g2.setPaint(arrowColor);
-    g2.setRenderingHints(ANTIALIASED_RENDERING);
-    g2.fill(path);
+    graphics.setPaint(arrowColor);
+    graphics.setRenderingHints(ANTI_ALIASED_RENDERING);
+    graphics.fill(path);
 
     return imageBuffer;
   }
@@ -283,7 +292,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundingBox a Dimension object specifying the area in which to paint two right arrows.
    * @return an Image of two arrows pointing right filled in the bounded area.
    */
-  public static Image fillDoubleRightArrow(Dimension boundingBox) {
+  public static @NotNull Image fillDoubleRightArrow(@NotNull Dimension boundingBox) {
     return fillDoubleRightArrow(boundingBox, DEFAULT_COLOR);
   }
 
@@ -293,27 +302,27 @@ public class GraphicsUtil extends ImageUtils {
    * @param arrowColor a Color object specifying the color of the arrow.
    * @return an Image of two arrows pointing right filled in the bounded area.
    */
-  public static Image fillDoubleRightArrow(Dimension boundingBox, Color arrowColor) {
+  public static @NotNull Image fillDoubleRightArrow(@NotNull Dimension boundingBox, @NotNull Color arrowColor) {
 
     Image imageBuffer = new BufferedImage(boundingBox.width, boundingBox.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) imageBuffer.getGraphics();
+    Graphics2D graphics = (Graphics2D) imageBuffer.getGraphics();
 
     GeneralPath path = new GeneralPath();
 
     path.moveTo(0, boundingBox.height);
     path.lineTo(0, 0);
-    path.lineTo(boundingBox.width / 2, boundingBox.height / 2);
-    path.lineTo(boundingBox.width / 2, 0);
-    path.lineTo(boundingBox.width, boundingBox.height / 2);
-    path.lineTo(boundingBox.width / 2, boundingBox.height);
-    path.lineTo(boundingBox.width / 2, boundingBox.height / 2);
+    path.lineTo(boundingBox.width / 2.0f, boundingBox.height / 2.0f);
+    path.lineTo(boundingBox.width / 2.0f, 0);
+    path.lineTo(boundingBox.width, boundingBox.height / 2.0f);
+    path.lineTo(boundingBox.width / 2.0f, boundingBox.height);
+    path.lineTo(boundingBox.width / 2.0f, boundingBox.height / 2.0f);
     path.closePath();
     //path.transform(AffineTransform.getTranslateInstance(getXOffset(viewableArea, boundingBox), getYOffset(viewableArea, boundingBox)));
 
-    g2.setPaint(arrowColor);
-    g2.setRenderingHints(ANTIALIASED_RENDERING);
-    g2.fill(path);
+    graphics.setPaint(arrowColor);
+    graphics.setRenderingHints(ANTI_ALIASED_RENDERING);
+    graphics.fill(path);
 
     return imageBuffer;
   }
@@ -323,7 +332,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundingBox a Dimension object specifying the area in which to paint a down arrow.
    * @return an Image with an arrow pointing down filled within the bounded area.
    */
-  public static Image fillDownArrow(Dimension boundingBox) {
+  public static @NotNull Image fillDownArrow(@NotNull Dimension boundingBox) {
     return fillDownArrow(boundingBox, DEFAULT_COLOR);
   }
 
@@ -333,23 +342,23 @@ public class GraphicsUtil extends ImageUtils {
    * @param arrowColor a Color object specifying the color of the arrow.
    * @return an Image with an arrow pointing down filled within the bounded area.
    */
-  public static Image fillDownArrow(Dimension boundingBox, Color arrowColor) {
+  public static @NotNull Image fillDownArrow(@NotNull Dimension boundingBox, @NotNull Color arrowColor) {
 
     Image imageBuffer = new BufferedImage(boundingBox.width, boundingBox.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) imageBuffer.getGraphics();
+    Graphics2D graphics = (Graphics2D) imageBuffer.getGraphics();
 
     GeneralPath path = new GeneralPath();
 
     path.moveTo(0.0f, 0.0f);
     path.lineTo(boundingBox.width, 0.0f);
-    path.lineTo(boundingBox.width / 2, boundingBox.height);
+    path.lineTo(boundingBox.width / 2.0f, boundingBox.height);
     path.closePath();
     //path.transform(AffineTransform.getTranslateInstance(getXOffset(viewableArea, boundingBox), getYOffset(viewableArea, boundingBox)));
 
-    g2.setPaint(arrowColor);
-    g2.setRenderingHints(ANTIALIASED_RENDERING);
-    g2.fill(path);
+    graphics.setPaint(arrowColor);
+    graphics.setRenderingHints(ANTI_ALIASED_RENDERING);
+    graphics.fill(path);
 
     return imageBuffer;
   }
@@ -359,7 +368,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundingBox a Dimension object specifying the area in which to paint a left arrow.
    * @return an Image with an arrow pointing left filled within the bounded area.
    */
-  public static Image fillLeftArrow(Dimension boundingBox) {
+  public static @NotNull Image fillLeftArrow(@NotNull Dimension boundingBox) {
     return fillLeftArrow(boundingBox, Color.black);
   }
 
@@ -369,23 +378,23 @@ public class GraphicsUtil extends ImageUtils {
    * @param arrowColor a Color object specifying the color of the arrow.
    * @return an Image with an arrow pointing left filled within the bounded area.
    */
-  public static Image fillLeftArrow(Dimension boundingBox, Color arrowColor) {
+  public static @NotNull Image fillLeftArrow(@NotNull Dimension boundingBox, @NotNull Color arrowColor) {
 
     Image imageBuffer = new BufferedImage(boundingBox.width, boundingBox.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) imageBuffer.getGraphics();
+    Graphics2D graphics = (Graphics2D) imageBuffer.getGraphics();
 
     GeneralPath path = new GeneralPath();
 
-    path.moveTo(0.0f, boundingBox.height / 2);
+    path.moveTo(0.0f, boundingBox.height / 2.0f);
     path.lineTo(boundingBox.width, 0.0f);
     path.lineTo(boundingBox.width, boundingBox.height);
     path.closePath();
     //path.transform(AffineTransform.getTranslateInstance(getXOffset(viewableArea, boundingBox), getYOffset(viewableArea, boundingBox)));
 
-    g2.setPaint(arrowColor);
-    g2.setRenderingHints(ANTIALIASED_RENDERING);
-    g2.fill(path);
+    graphics.setPaint(arrowColor);
+    graphics.setRenderingHints(ANTI_ALIASED_RENDERING);
+    graphics.fill(path);
 
     return imageBuffer;
   }
@@ -395,7 +404,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundingBox a Dimension object specifying the area in which to paint a right arrow.
    * @return an Image with an arrow pointing right filled within the bounded area.
    */
-  public static Image fillRightArrow(Dimension boundingBox) {
+  public static @NotNull Image fillRightArrow(@NotNull Dimension boundingBox) {
     return fillRightArrow(boundingBox, Color.black);
   }
 
@@ -405,22 +414,22 @@ public class GraphicsUtil extends ImageUtils {
    * @param arrowColor a Color object specifying the color of the arrow.
    * @return an Image with an arrow pointing right filled within the bounded area.
    */
-  public static Image fillRightArrow(Dimension boundingBox, Color arrowColor) {
+  public static @NotNull Image fillRightArrow(@NotNull Dimension boundingBox, @NotNull Color arrowColor) {
 
     Image imageBuffer = new BufferedImage(boundingBox.width, boundingBox.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) imageBuffer.getGraphics();
+    Graphics2D graphics = (Graphics2D) imageBuffer.getGraphics();
 
     GeneralPath path = new GeneralPath();
     path.moveTo(0.0f, 0.0f);
-    path.lineTo(boundingBox.width, boundingBox.height / 2);
+    path.lineTo(boundingBox.width, boundingBox.height / 2.0f);
     path.lineTo(0.0f, boundingBox.height);
     path.closePath();
     //path.transform(AffineTransform.getTranslateInstance(getXOffset(viewableArea, boundingBox), getYOffset(viewableArea, boundingBox)));
 
-    g2.setPaint(arrowColor);
-    g2.setRenderingHints(ANTIALIASED_RENDERING);
-    g2.fill(path);
+    graphics.setPaint(arrowColor);
+    graphics.setRenderingHints(ANTI_ALIASED_RENDERING);
+    graphics.fill(path);
 
     return imageBuffer;
   }
@@ -430,7 +439,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundingBox a Dimension object specifying the area in which to paint a up arrow.
    * @return an Image with an arrow pointing up filled within the bounded area.
    */
-  public static Image fillUpArrow(Dimension boundingBox) {
+  public static @NotNull Image fillUpArrow(@NotNull Dimension boundingBox) {
     return fillUpArrow(boundingBox, Color.black);
   }
 
@@ -440,23 +449,23 @@ public class GraphicsUtil extends ImageUtils {
    * @param arrowColor a Color object specifying the color of the arrow.
    * @return an Image with an arrow pointing up filled within the bounded area.
    */
-  public static Image fillUpArrow(Dimension boundingBox, Color arrowColor) {
+  public static @NotNull Image fillUpArrow(@NotNull Dimension boundingBox, @NotNull Color arrowColor) {
 
     Image imageBuffer = new BufferedImage(boundingBox.width, boundingBox.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) imageBuffer.getGraphics();
+    Graphics2D graphics = (Graphics2D) imageBuffer.getGraphics();
 
     GeneralPath path = new GeneralPath();
 
     path.moveTo(0.0f, boundingBox.height);
-    path.lineTo(boundingBox.width / 2, 0.0f);
+    path.lineTo(boundingBox.width / 2.0f, 0.0f);
     path.lineTo(boundingBox.width, boundingBox.height);
     path.closePath();
     //path.transform(AffineTransform.getTranslateInstance(getXOffset(viewableArea, boundingBox), getYOffset(viewableArea, boundingBox)));
 
-    g2.setPaint(arrowColor);
-    g2.setRenderingHints(ANTIALIASED_RENDERING);
-    g2.fill(path);
+    graphics.setPaint(arrowColor);
+    graphics.setRenderingHints(ANTI_ALIASED_RENDERING);
+    graphics.fill(path);
 
     return imageBuffer;
   }
@@ -466,7 +475,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param rectangle the Rectangle used to convert to a Dimension object.
    * @return a Dimension object set to the width and height of the Rectangle.
    */
-  public static Dimension getDimension(RectangularShape rectangle) {
+  public static @NotNull Dimension getDimension(@NotNull RectangularShape rectangle) {
     return new Dimension((int) rectangle.getWidth(), (int) rectangle.getHeight());
   }
 
@@ -475,11 +484,11 @@ public class GraphicsUtil extends ImageUtils {
    * @param viewableArea a Dimension object specifying the area in which to the paint the Icon.
    * @return an Icon representation of a "Diskette".
    */
-  public static Icon getDisketteIcon(Dimension viewableArea) {
+  public static @NotNull Icon getDisketteIcon(@NotNull Dimension viewableArea) {
 
     Image bufferedImage = new BufferedImage(viewableArea.width, viewableArea.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) bufferedImage.getGraphics();
+    Graphics2D graphics = (Graphics2D) bufferedImage.getGraphics();
 
     GeneralPath floppySkin = new GeneralPath();
 
@@ -520,6 +529,7 @@ public class GraphicsUtil extends ImageUtils {
     writeProtect.closePath();
 
     GeneralPath diskette = new GeneralPath(floppySkin);
+
     diskette.append(filmArea, false);
     diskette.append(filmCover, false);
     diskette.append(writeProtect, false);
@@ -557,15 +567,15 @@ public class GraphicsUtil extends ImageUtils {
     Point2D point2 = new Point2D.Double(point1.getX() + disketteArea.getWidth(), point1.getY() + disketteArea.getHeight());
 
     // paint the diskette
-    g2.setStroke(new BasicStroke(2.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER));
-    g2.setPaint(Color.black);
-    g2.draw(floppySkin);
-    g2.setPaint(new GradientPaint(point1, new Color(128, 128, 0), point2, new Color(107, 107, 4), true));
-    g2.fill(floppySkin);
-    g2.setPaint(Color.black);
-    g2.fill(filmCover);
-    g2.draw(filmArea);
-    g2.draw(writeProtect);
+    graphics.setStroke(new BasicStroke(2.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER));
+    graphics.setPaint(Color.black);
+    graphics.draw(floppySkin);
+    graphics.setPaint(new GradientPaint(point1, new Color(128, 128, 0), point2, new Color(107, 107, 4), true));
+    graphics.fill(floppySkin);
+    graphics.setPaint(Color.black);
+    graphics.fill(filmCover);
+    graphics.draw(filmArea);
+    graphics.draw(writeProtect);
 
     return new ImageIcon(bufferedImage);
   }
@@ -578,7 +588,7 @@ public class GraphicsUtil extends ImageUtils {
    * @return a Dimension object who's width and height is based on the largest dimension of the Dimension object
    * parameter.
    */
-  public static Dimension getMaximumSquareArea(Dimension area) {
+  public static @NotNull Dimension getMaximumSquareArea(@NotNull Dimension area) {
 
     int maxDim = Math.max(area.width, area.height);
 
@@ -593,7 +603,7 @@ public class GraphicsUtil extends ImageUtils {
    * @return a Dimension object who's width and height is based on the smallest dimension of the Dimension object
    * parameter.
    */
-  public static Dimension getMinimumSquareArea(Dimension area) {
+  public static @NotNull Dimension getMinimumSquareArea(@NotNull Dimension area) {
 
     int minDim = Math.min(area.width, area.height);
 
@@ -605,25 +615,25 @@ public class GraphicsUtil extends ImageUtils {
    * @param viewableArea a Dimension object specifying the area in which to the paint the Icon.
    * @return an Icon representation of "New Document".
    */
-  public static Icon getNewDocumentIcon(Dimension viewableArea) {
+  public static @NotNull Icon getNewDocumentIcon(@NotNull Dimension viewableArea) {
 
     Image bufferedImage = new BufferedImage(viewableArea.width, viewableArea.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) bufferedImage.getGraphics();
+    Graphics2D graphics = (Graphics2D) bufferedImage.getGraphics();
 
-    GeneralPath newDocument = new GeneralPath();
+    GeneralPath path = new GeneralPath();
 
-    newDocument.moveTo(0.0f, 0.0f);
-    newDocument.lineTo(0.0f, 40.0f);
-    newDocument.lineTo(35.0f, 40.0f);
-    newDocument.lineTo(35.0f, 10.0f);
-    newDocument.lineTo(25.0f, 0.0f);
-    newDocument.lineTo(25.0f, 10.0f);
-    newDocument.lineTo(35.0f, 10.0f);
-    newDocument.lineTo(25.0f, 0.0f);
-    newDocument.closePath();
+    path.moveTo(0.0f, 0.0f);
+    path.lineTo(0.0f, 40.0f);
+    path.lineTo(35.0f, 40.0f);
+    path.lineTo(35.0f, 10.0f);
+    path.lineTo(25.0f, 0.0f);
+    path.lineTo(25.0f, 10.0f);
+    path.lineTo(35.0f, 10.0f);
+    path.lineTo(25.0f, 0.0f);
+    path.closePath();
 
-    Rectangle2D documentBounds = newDocument.getBounds2D();
+    Rectangle2D documentBounds = path.getBounds2D();
 
     Dimension documentArea = getDimension(documentBounds);
 
@@ -631,8 +641,8 @@ public class GraphicsUtil extends ImageUtils {
 
     AffineTransform scaleInstance = AffineTransform.getScaleInstance(scale, scale);
 
-    newDocument.transform(scaleInstance);
-    documentBounds = newDocument.getBounds2D();
+    path.transform(scaleInstance);
+    documentBounds = path.getBounds2D();
     documentArea = getDimension(documentBounds);
 
     int xOffset = getXOffset(viewableArea, documentArea);
@@ -640,18 +650,18 @@ public class GraphicsUtil extends ImageUtils {
 
     AffineTransform translateInstance = AffineTransform.getTranslateInstance(xOffset, yOffset);
 
-    newDocument.transform(translateInstance);
-    documentBounds = newDocument.getBounds2D();
+    path.transform(translateInstance);
+    documentBounds = path.getBounds2D();
     documentArea = getDimension(documentBounds);
 
     Point2D point1 = new Point2D.Double(documentBounds.getX() + documentArea.getWidth() / 2.0, documentBounds.getY());
     Point2D point2 = new Point2D.Double(point1.getX(), documentBounds.getY() + documentArea.getHeight());
 
-    g2.setPaint(new GradientPaint(point1, Color.white, point2, new Color(212, 208, 200), true));
-    g2.fill(newDocument);
-    g2.setStroke(new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
-    g2.setPaint(Color.black);
-    g2.draw(newDocument);
+    graphics.setPaint(new GradientPaint(point1, Color.white, point2, new Color(212, 208, 200), true));
+    graphics.fill(path);
+    graphics.setStroke(new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
+    graphics.setPaint(Color.black);
+    graphics.draw(path);
 
     return new ImageIcon(bufferedImage);
   }
@@ -661,13 +671,14 @@ public class GraphicsUtil extends ImageUtils {
    * @param viewableArea a Dimension object specifying the size of the viewable area in which to paint the Icon.
    * @return an Icon object representing the Open Folder icon.
    */
-  public static Icon getOpenFolderIcon(Dimension viewableArea) {
+  public static @NotNull Icon getOpenFolderIcon(@NotNull Dimension viewableArea) {
 
     Image bufferedImage = new BufferedImage(viewableArea.width, viewableArea.height, BufferedImage.TYPE_INT_ARGB);
 
-    Graphics2D g2 = (Graphics2D) bufferedImage.getGraphics();
+    Graphics2D graphics = (Graphics2D) bufferedImage.getGraphics();
 
-    final GeneralPath folderBack = new GeneralPath();
+    GeneralPath folderBack = new GeneralPath();
+
     folderBack.moveTo(0.0f, 0.0f);
     folderBack.lineTo(40.0f, 0.0f);
     folderBack.lineTo(40.0f, 10.0f);
@@ -676,7 +687,8 @@ public class GraphicsUtil extends ImageUtils {
     folderBack.lineTo(0.0f, 100.0f);
     folderBack.closePath();
 
-    final GeneralPath folderFront = new GeneralPath();
+    GeneralPath folderFront = new GeneralPath();
+
     folderFront.moveTo(0.0f, 100.0f);
     folderFront.lineTo(40.0f, 15.0f);
     folderFront.lineTo(80.0f, 15.0f);
@@ -686,12 +698,16 @@ public class GraphicsUtil extends ImageUtils {
     folderFront.closePath();
 
     GeneralPath folder = new GeneralPath(folderBack);
+
     folder.append(folderFront, false);
 
     Rectangle2D folderBounds = folder.getBounds2D();
+
     Dimension folderArea = getDimension(folderBounds);
-    final double scale = getScalingFactor(folderArea, viewableArea);
-    final AffineTransform scaleInstance = AffineTransform.getScaleInstance(scale, scale);
+
+    double scale = getScalingFactor(folderArea, viewableArea);
+
+    AffineTransform scaleInstance = AffineTransform.getScaleInstance(scale, scale);
 
     folderBack.transform(scaleInstance);
     folderFront.transform(scaleInstance);
@@ -700,35 +716,33 @@ public class GraphicsUtil extends ImageUtils {
     folderBounds = folder.getBounds2D();
     folderArea = getDimension(folderBounds);
 
-    final int xOffset = getXOffset(viewableArea, folderArea);
-    final int folderBackYOffset = getYOffset(viewableArea, folderArea);
-    final int folderFrontYOffset = folderBackYOffset +
-      (int) Math.abs(folderBack.getBounds2D().getHeight() - folderFront.getBounds2D().getHeight());
+    int xOffset = getXOffset(viewableArea, folderArea);
+    int folderBackYOffset = getYOffset(viewableArea, folderArea);
+    int folderFrontYOffset = folderBackYOffset + (int) Math.abs(folderBack.getBounds2D().getHeight() - folderFront.getBounds2D().getHeight());
 
     folderBack.transform(AffineTransform.getTranslateInstance(xOffset, folderBackYOffset));
     folderFront.transform(AffineTransform.getTranslateInstance(xOffset, folderFrontYOffset));
     folderBounds = folder.getBounds2D();
 
-    final Point2D folderBackPoint1 = new Point2D.Double(folderBounds.getX() + folderBounds.getWidth() / 2.0, folderBounds.getY());
-    final Point2D folderBackPoint2 = new Point2D.Double(folderBackPoint1.getX(), folderBackPoint1.getY() + folderBounds.getHeight());
-    final Point2D folderFrontPoint1 = new Point2D.Double(folderBounds.getX(), folderBounds.getY());
-    final Point2D folderFrontPoint2 = new Point2D.Double(folderFrontPoint1.getX() + folderBounds.getWidth(),
-      folderFrontPoint1.getY() + folderBounds.getHeight());
+    Point2D folderBackPoint1 = new Point2D.Double(folderBounds.getX() + folderBounds.getWidth() / 2.0, folderBounds.getY());
+    Point2D folderBackPoint2 = new Point2D.Double(folderBackPoint1.getX(), folderBackPoint1.getY() + folderBounds.getHeight());
+    Point2D folderFrontPoint1 = new Point2D.Double(folderBounds.getX(), folderBounds.getY());
+    Point2D folderFrontPoint2 = new Point2D.Double(folderFrontPoint1.getX() + folderBounds.getWidth(), folderFrontPoint1.getY() + folderBounds.getHeight());
 
     // paint the folder back
-    g2.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
-    g2.setPaint(Color.black);
-    g2.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
-    g2.draw(folderBack);
-    g2.setPaint(new GradientPaint(folderBackPoint1, new Color(139, 109, 8), folderBackPoint2, Color.black));
-    g2.fill(folderBack);
+    graphics.setRenderingHints(new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON));
+    graphics.setPaint(Color.black);
+    graphics.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
+    graphics.draw(folderBack);
+    graphics.setPaint(new GradientPaint(folderBackPoint1, new Color(139, 109, 8), folderBackPoint2, Color.black));
+    graphics.fill(folderBack);
 
     // paint the folder front
-    g2.setPaint(Color.black);
-    g2.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
-    g2.draw(folderFront);
-    g2.setPaint(new GradientPaint(folderFrontPoint1, Color.white, folderFrontPoint2, new Color(210, 168, 28)));
-    g2.fill(folderFront);
+    graphics.setPaint(Color.black);
+    graphics.setStroke(new BasicStroke(1.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL));
+    graphics.draw(folderFront);
+    graphics.setPaint(new GradientPaint(folderFrontPoint1, Color.white, folderFrontPoint2, new Color(210, 168, 28)));
+    graphics.fill(folderFront);
 
     return new ImageIcon(bufferedImage);
   }
@@ -736,24 +750,24 @@ public class GraphicsUtil extends ImageUtils {
   /**
    * Converts a Dimension object into a rectangular shape with the same dimensions (width and height) of the
    * Dimension object and a default location of (0.0, 0.0).
-   * @param dim the Dimension object used to determine the size of the RectangularShape.
+   * @param dimension the Dimension object used to determine the size of the RectangularShape.
    * @return a RectangularShape object constructed with the dimensions of the Dimension object at the default
    * location (0.0, 0.0).
    */
-  public static RectangularShape getRectangle(Dimension dim) {
-    return getRectangle(new Point2D.Double(0.0, 0.0), dim);
+  public static @NotNull RectangularShape getRectangle(@NotNull Dimension dimension) {
+    return getRectangle(new Point2D.Double(0.0, 0.0), dimension);
   }
 
   /**
    * Converts a Dimension object into a rectangular shape with the same dimensions (width and height) of the
    * Dimension object at the specified location.
    * @param location a Point2D object specifying the location of the RectangularShape object in application coordinates.
-   * @param dim the Dimension object used to determine the size of the RectangularShape.
+   * @param dimension the Dimension object used to determine the size of the RectangularShape.
    * @return a RectangularShape object constructed with the dimensions of the Dimension object at the default
    * location (0.0, 0.0).
    */
-  public static RectangularShape getRectangle(Point2D location, Dimension dim) {
-    return new Rectangle2D.Double(location.getX(), location.getY(), dim.width, dim.getHeight());
+  public static @NotNull RectangularShape getRectangle(@NotNull Point2D location, @NotNull Dimension dimension) {
+    return new Rectangle2D.Double(location.getX(), location.getY(), dimension.width, dimension.getHeight());
   }
 
   /**
@@ -764,17 +778,14 @@ public class GraphicsUtil extends ImageUtils {
    * @return a double value specifying the scaling factor used for the transformation from the actual size to
    * the desired size.
    */
-  public static double getScalingFactor(Dimension actualSize, Dimension preferredSize) {
+  public static double getScalingFactor(@NotNull Dimension actualSize, @NotNull Dimension preferredSize) {
 
-    double xfactor = (actualSize.getWidth() / preferredSize.getWidth());
-    double yfactor = (actualSize.getHeight() / preferredSize.getHeight());
+    double xFactor = actualSize.getWidth() / preferredSize.getWidth();
+    double yFactor = actualSize.getHeight() / preferredSize.getHeight();
 
-    if (xfactor > yfactor) {
-      return (preferredSize.getWidth() / actualSize.getWidth());
-    }
-    else {
-      return (preferredSize.getHeight() / actualSize.getHeight());
-    }
+    return xFactor > yFactor
+      ? preferredSize.getWidth() / actualSize.getWidth()
+      : preferredSize.getHeight() / actualSize.getHeight();
   }
 
   /**
@@ -782,7 +793,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param viewableArea a Dimension object specifying the size of the viewable area in which to paint the Icon.
    * @return an Icon object representing the transparent icon.
    */
-  public static Icon getTransparentIcon(Dimension viewableArea) {
+  public static @NotNull Icon getTransparentIcon(@NotNull Dimension viewableArea) {
     return new ImageIcon(new BufferedImage(viewableArea.width, viewableArea.height, BufferedImage.TYPE_INT_ARGB));
   }
 
@@ -794,7 +805,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param component the JComponent for which the viewble area is determined.
    * @return a Dimension object specifying the dimensions (width and height) of the viewable area.
    */
-  public static Dimension getViewableArea(JComponent component) {
+  public static @NotNull Dimension getViewableArea(@NotNull JComponent component) {
 
     Dimension size = component.getSize();
 
@@ -817,7 +828,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param viewableArea a Dimension object contained within the bounded area.
    * @return an integer specifying the X offset.
    */
-  public static int getXOffset(Dimension viewableArea, Dimension boundedArea) {
+  public static int getXOffset(@NotNull Dimension viewableArea, @NotNull Dimension boundedArea) {
     return (int) ((viewableArea.getWidth() - boundedArea.getWidth()) / 2.0);
   }
 
@@ -827,7 +838,7 @@ public class GraphicsUtil extends ImageUtils {
    * @param boundedArea a Dimension object contained within the viewable area.
    * @return an integer specifying the Y offset.
    */
-  public static int getYOffset(Dimension viewableArea, Dimension boundedArea) {
+  public static int getYOffset(@NotNull Dimension viewableArea, @NotNull Dimension boundedArea) {
     return (int) ((viewableArea.getHeight() - boundedArea.getHeight()) / 2.0);
   }
 }

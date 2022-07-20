@@ -44,7 +44,7 @@ import javax.swing.border.Border;
 import javax.swing.event.MouseInputListener;
 import javax.swing.plaf.ComponentUI;
 
-import org.cp.desktop.swing.GraphicsUtil;
+import org.cp.desktop.swing.support.GraphicsUtil;
 import org.cp.desktop.swing.JCalendar;
 import org.cp.desktop.swing.plaf.CalendarUI;
 import org.cp.elements.beans.AbstractBean;
