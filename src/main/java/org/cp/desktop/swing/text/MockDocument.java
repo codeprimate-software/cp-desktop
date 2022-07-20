@@ -26,7 +26,6 @@ import javax.swing.text.Segment;
 
 import org.cp.desktop.util.Strings;
 import org.cp.elements.lang.Assert;
-import org.cp.elements.lang.StringUtils;
 
 public final class MockDocument implements Document {
 
@@ -133,7 +132,7 @@ public final class MockDocument implements Document {
     }
     catch (BadLocationException cause) {
 
-      if (StringUtils.hasText(replacedText)) {
+      if (Strings.hasText(replacedText)) {
         text = Strings.insert(text, replacedText, offset);
       }
 

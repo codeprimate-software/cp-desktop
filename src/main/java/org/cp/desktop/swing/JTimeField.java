@@ -42,14 +42,14 @@ import javax.swing.text.PlainDocument;
 import org.cp.desktop.awt.event.KeyEventUtils;
 import org.cp.desktop.swing.model.DefaultTimeModel;
 import org.cp.desktop.swing.model.TimeModel;
+import org.cp.desktop.util.Strings;
 import org.cp.elements.lang.ObjectUtils;
-import org.cp.elements.lang.StringUtils;
 import org.cp.elements.lang.annotation.NotNull;
 import org.cp.elements.lang.annotation.Nullable;
 import org.cp.elements.time.DateTimeUtils;
 
 @SuppressWarnings("unused")
-public final class JTimeField extends JTextField implements PropertyChangeListener {
+public class JTimeField extends JTextField implements PropertyChangeListener {
 
   private static final DateFormat TIME_FORMAT = new SimpleDateFormat("hh:mm a");
 
@@ -97,7 +97,7 @@ public final class JTimeField extends JTextField implements PropertyChangeListen
    * @throws ParseException if the format to the String time value is not valid.
    */
   public JTimeField(@Nullable String timeValue) throws ParseException {
-    this(StringUtils.hasText(timeValue) ? DateTimeUtils.create(TIME_FORMAT.parse(timeValue).getTime()) : null);
+    this(Strings.hasText(timeValue) ? DateTimeUtils.create(TIME_FORMAT.parse(timeValue).getTime()) : null);
   }
 
   /**
@@ -175,7 +175,7 @@ public final class JTimeField extends JTextField implements PropertyChangeListen
   public void setText(String text) {
 
     try {
-      getModel().setTime(StringUtils.hasText(text) ? DateTimeUtils.create(TIME_FORMAT.parse(text).getTime())
+      getModel().setTime(Strings.hasText(text) ? DateTimeUtils.create(TIME_FORMAT.parse(text).getTime())
         : Calendar.getInstance());
     }
     catch (ParseException cause) {

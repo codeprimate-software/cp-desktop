@@ -31,7 +31,6 @@ import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
 
 import org.cp.desktop.util.Strings;
-import org.cp.elements.lang.StringUtils;
 
 public final class JPhoneNumberField extends JTextField {
 
@@ -258,9 +257,9 @@ public final class JPhoneNumberField extends JTextField {
      */
     private String format(int offset, String value) {
 
-      String valueDigits = StringUtils.getDigits(value);
+      String valueDigits = Strings.getDigits(value);
 
-      if (StringUtils.hasText(valueDigits)) {
+      if (Strings.hasText(valueDigits)) {
         StringBuffer buffer = new StringBuffer();
         for (int position = offset, index = 0, len = valueDigits.length();  index < len; position++) {
           if (position == RIGHT_PAREN_POSITION) {
@@ -334,8 +333,8 @@ public final class JPhoneNumberField extends JTextField {
 
       // verify the the number of digits in the current phone number and value do not exceed the maximum
       // number of digits in a valid phone number
-      int numPhoneNumberDigits = StringUtils.getDigits(this.getText(0, getLength())).length();
-      int numValueDigits = StringUtils.getDigits(value).length();
+      int numPhoneNumberDigits = Strings.getDigits(this.getText(0, getLength())).length();
+      int numValueDigits = Strings.getDigits(value).length();
 
       if ((numValueDigits > Strings.countWhitespace(DEFAULT_PHONE_NUMBER.substring(offset)))
         || ((numPhoneNumberDigits + numValueDigits) > MAX_PHONE_NUMBER_DIGITS)) {
@@ -344,7 +343,7 @@ public final class JPhoneNumberField extends JTextField {
 
       // if the value contains only digits and does not violate length, then the value is valid and the format
       // method will adjust the value according to the phone number format
-      if (StringUtils.isDigits(value)) {
+      if (Strings.isDigits(value)) {
         return true;
       }
 
@@ -433,7 +432,7 @@ public final class JPhoneNumberField extends JTextField {
 
       int beginIndex = Math.min(currentPhoneNumber.length(), offset);
 
-      String shiftedDigits = StringUtils.getDigits(currentPhoneNumber.substring(beginIndex));
+      String shiftedDigits = Strings.getDigits(currentPhoneNumber.substring(beginIndex));
 
       shiftedDigits = format(offset, shiftedDigits);
 
@@ -460,7 +459,7 @@ public final class JPhoneNumberField extends JTextField {
 
       String currentPhoneNumber = this.getText(0, getLength());
 
-      String digitsAfterOffset = StringUtils.getDigits(currentPhoneNumber.substring(offset));
+      String digitsAfterOffset = Strings.getDigits(currentPhoneNumber.substring(offset));
 
       int endIndex = Math.min(digitsAfterOffset.length(), (DEFAULT_PHONE_NUMBER.length() - offset - value.length()));
 

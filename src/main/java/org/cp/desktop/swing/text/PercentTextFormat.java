@@ -19,7 +19,6 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 import org.cp.desktop.util.Strings;
-import org.cp.elements.lang.StringUtils;
 
 public class PercentTextFormat implements TextFormat {
 
@@ -106,7 +105,7 @@ public class PercentTextFormat implements TextFormat {
    */
   private String mutate(int offset, int endPosition, String value) {
 
-    if (StringUtils.hasText(value)) {
+    if (Strings.hasText(value)) {
       if ((offset == endPosition) && !value.endsWith(String.valueOf(PERCENT_SIGN_CHAR))) {
         value += PERCENT_SIGN_CHAR;
       }

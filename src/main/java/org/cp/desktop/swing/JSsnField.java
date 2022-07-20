@@ -28,9 +28,8 @@ import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
 
 import org.cp.desktop.util.Strings;
-import org.cp.elements.lang.StringUtils;
 
-public final class JSsnField extends JTextField {
+public class JSsnField extends JTextField {
 
   private static final int END_POSITION = 11;
   private static final int LEFT_DASH_POSITION = 6;
@@ -231,9 +230,9 @@ public final class JSsnField extends JTextField {
      */
     private String format(final int offset, final String value) {
 
-      String valueDigits = StringUtils.getDigits(value);
+      String valueDigits = Strings.getDigits(value);
 
-      if (StringUtils.hasText(valueDigits)) {
+      if (Strings.hasText(valueDigits)) {
 
         StringBuffer buffer = new StringBuffer();
 
@@ -298,8 +297,8 @@ public final class JSsnField extends JTextField {
 
       // verify the the number of digits in the current ssn and value do not exceed the maximum number of digits
       // in a valid ssn
-      int numSsnDigits = StringUtils.getDigits(this.getText(0, getLength())).length();
-      int numValueDigits = StringUtils.getDigits(value).length();
+      int numSsnDigits = Strings.getDigits(this.getText(0, getLength())).length();
+      int numValueDigits = Strings.getDigits(value).length();
 
       if (numValueDigits > Strings.countWhitespace(DEFAULT_SSN.substring(offset))
         || ((numSsnDigits + numValueDigits) > MAX_NUMBER_OF_SSN_DIGITS)) {
@@ -308,7 +307,7 @@ public final class JSsnField extends JTextField {
 
       // if the value contains only digits and does not violate length, then the value is valid and the format
       // method will adjust the value according to the phone number format
-      if (StringUtils.isDigits(value)) {
+      if (Strings.isDigits(value)) {
         return true;
       }
 
@@ -387,7 +386,7 @@ public final class JSsnField extends JTextField {
 
       int beginIndex = Math.min(currentSsn.length(), offset);
 
-      String shiftedDigits = StringUtils.getDigits(currentSsn.substring(beginIndex));
+      String shiftedDigits = Strings.getDigits(currentSsn.substring(beginIndex));
 
       shiftedDigits = format(offset, shiftedDigits);
 
@@ -414,7 +413,7 @@ public final class JSsnField extends JTextField {
 
       String currentSsn = this.getText(0, getLength());
 
-      String digitsAfterOffset = StringUtils.getDigits(currentSsn.substring(offset));
+      String digitsAfterOffset = Strings.getDigits(currentSsn.substring(offset));
 
       int endIndex = Math.min(digitsAfterOffset.length(), (DEFAULT_SSN.length() - offset - value.length()));
 
@@ -438,10 +437,12 @@ public final class JSsnField extends JTextField {
    * The SsnFieldKeyListener is used by the JSsnField component class to track key events targeted at editing
    * and traversing the social security number.
    */
-  public final class SsnFieldKeyListener extends KeyAdapter {
+  public class SsnFieldKeyListener extends KeyAdapter {
 
     public void keyPressed(KeyEvent event) {
+
       int dot = getCaret().getDot();
+
       switch (event.getKeyCode()) {
         case KeyEvent.VK_INSERT:
           setTypeOver(!isTypeOver());

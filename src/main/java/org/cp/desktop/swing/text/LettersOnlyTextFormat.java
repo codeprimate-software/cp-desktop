@@ -17,7 +17,7 @@ package org.cp.desktop.swing.text;
 
 import javax.swing.text.Document;
 
-import org.cp.elements.lang.StringUtils;
+import org.cp.desktop.util.Strings;
 
 public final class LettersOnlyTextFormat implements TextFormat {
 
@@ -35,7 +35,7 @@ public final class LettersOnlyTextFormat implements TextFormat {
    */
   public String format(final Document doc, final int offset, final String text) throws InvalidTextFormatException {
 
-    if (StringUtils.isLetters(text)) {
+    if (Strings.isLetters(text)) {
       throw new InvalidTextFormatException("The text must consist of only letters a through z and/or A through Z!");
     }
 

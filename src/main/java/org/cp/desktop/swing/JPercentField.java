@@ -20,7 +20,6 @@ import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
-import java.util.Arrays;
 
 import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
@@ -28,7 +27,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
 
-import org.cp.elements.lang.StringUtils;
+import org.cp.desktop.util.Strings;
 
 public final class JPercentField extends JTextField {
 
@@ -85,7 +84,7 @@ public final class JPercentField extends JTextField {
    * @param text a String specifying the percentage value to populate this text field component.
    */
   public void setText(String text) {
-    if (StringUtils.isEmpty(text)) {
+    if (Strings.isEmpty(text)) {
       text = DEFAULT_PERCENT_VALUE;
     }
     if (!text.trim().endsWith(PERCENT_SIGN)) {
@@ -132,11 +131,11 @@ public final class JPercentField extends JTextField {
         return false;
       }
 
-      if (StringUtils.contains(value, DECIMAL_POINT) && StringUtils.contains(currentPercentValue, DECIMAL_POINT)) {
+      if (Strings.contains(value, DECIMAL_POINT) && Strings.contains(currentPercentValue, DECIMAL_POINT)) {
         return false;
       }
 
-      if (StringUtils.contains(value, PERCENT_SIGN) && StringUtils.contains(currentPercentValue, PERCENT_SIGN)) {
+      if (Strings.contains(value, PERCENT_SIGN) && Strings.contains(currentPercentValue, PERCENT_SIGN)) {
         return false;
       }
 
@@ -146,7 +145,7 @@ public final class JPercentField extends JTextField {
         char c = value.charAt(index);
         switch (offset + index) {
           case 0:
-            valid &= !StringUtils.contains(this.getText(0, 1), NEGATIVE_SIGN) &&
+            valid &= !Strings.contains(this.getText(0, 1), NEGATIVE_SIGN) &&
               ((c == NEGATIVE_SIGN_CHARACTER) || (c == DECIMAL_POINT_CHARACTER) || Character.isDigit(c));
             break;
           default:
@@ -158,7 +157,7 @@ public final class JPercentField extends JTextField {
     }
 
     public void remove(final int offset, final int length) throws BadLocationException {
-      if (StringUtils.contains(this.getText(offset, length), PERCENT_SIGN)) {
+      if (Strings.contains(this.getText(offset, length), PERCENT_SIGN)) {
         return;
       }
       super.remove(offset, length);

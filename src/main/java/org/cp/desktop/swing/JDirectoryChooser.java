@@ -49,11 +49,11 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import org.cp.desktop.awt.image.ImageUtils;
+import org.cp.desktop.util.Strings;
 import org.cp.elements.io.DirectoriesOnlyFilter;
-import org.cp.elements.lang.StringUtils;
 import org.cp.elements.util.ArrayUtils;
 
-public final class JDirectoryChooser extends JDialog {
+public class JDirectoryChooser extends JDialog {
 
   private static final boolean MODAL = true;
 
@@ -66,7 +66,7 @@ public final class JDirectoryChooser extends JDialog {
 
   private JTree fileSystemTree;
 
-  private final Set expandedDirectories = new HashSet();
+  private final Set<Object> expandedDirectories = new HashSet<>();
 
   /**
    * Creates an instance of the JDirectoryChooser class displaying the localhost file system allowing the user
@@ -151,7 +151,7 @@ public final class JDirectoryChooser extends JDialog {
     try {
       String hostName = InetAddress.getLocalHost().getHostName();
 
-      hostName = StringUtils.hasText(hostName) ? hostName : DEFAULT_HOST_NAME;
+      hostName = Strings.hasText(hostName) ? hostName : DEFAULT_HOST_NAME;
 
       return hostName;
     }

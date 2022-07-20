@@ -19,7 +19,6 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 import org.cp.desktop.util.Strings;
-import org.cp.elements.lang.StringUtils;
 
 public class TimeTextFormat implements TextFormat {
 
@@ -42,7 +41,7 @@ public class TimeTextFormat implements TextFormat {
    * @throws InvalidTextFormatException if the text format is not valid input to the
    * text field component.
    */
-  public final String format(final Document doc, final int offset, String text) throws InvalidTextFormatException {
+  public final String format(Document doc, int offset, String text) throws InvalidTextFormatException {
 
     try {
 
@@ -98,9 +97,9 @@ public class TimeTextFormat implements TextFormat {
    */
   private String mutate(final int offset, final String value) {
 
-    String valueDigits = StringUtils.getDigits(value);
+    String valueDigits = Strings.getDigits(value);
 
-    if (StringUtils.hasText(valueDigits)) {
+    if (Strings.hasText(valueDigits)) {
 
       StringBuffer buffer = new StringBuffer();
 

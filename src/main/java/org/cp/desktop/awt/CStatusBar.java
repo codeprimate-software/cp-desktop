@@ -27,8 +27,8 @@ import java.text.StringCharacterIterator;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+import org.cp.desktop.util.Strings;
 import org.cp.elements.lang.ObjectUtils;
-import org.cp.elements.lang.StringUtils;
 
 @SuppressWarnings("unused")
 public final class CStatusBar extends Canvas {
@@ -472,7 +472,7 @@ public final class CStatusBar extends Canvas {
    */
   private void paintText(Graphics graphicsBuffer) {
 
-    if (StringUtils.hasText(getText())) {
+    if (Strings.hasText(getText())) {
       graphicsBuffer.setFont(getFont());
       getTextSegment().paint(graphicsBuffer);
     }

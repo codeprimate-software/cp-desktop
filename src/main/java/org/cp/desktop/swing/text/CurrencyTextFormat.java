@@ -19,7 +19,6 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 import org.cp.desktop.util.Strings;
-import org.cp.elements.lang.StringUtils;
 
 public class CurrencyTextFormat implements TextFormat {
 
@@ -108,7 +107,7 @@ public class CurrencyTextFormat implements TextFormat {
    */
   private String mutate(final int offset, String value) {
 
-    if (StringUtils.hasText(value)) {
+    if (Strings.hasText(value)) {
       if ((offset == DOLLAR_SIGN_POSITION) && !value.startsWith(String.valueOf(DOLLAR_SIGN_CHAR))) {
         value = DOLLAR_SIGN_CHAR + value;
       }

@@ -17,9 +17,9 @@ package org.cp.desktop.swing.text;
 
 import javax.swing.text.Document;
 
-import org.cp.elements.lang.StringUtils;
+import org.cp.desktop.util.Strings;
 
-public final class DigitsOnlyTextFormat implements TextFormat {
+public class DigitsOnlyTextFormat implements TextFormat {
 
   /**
    * Verifies that the text that will be inserted into the JTextField component has a valid format and performs
@@ -33,9 +33,9 @@ public final class DigitsOnlyTextFormat implements TextFormat {
    * @throws InvalidTextFormatException if the text format is not valid input to the
    * text field component.
    */
-  public String format(final Document doc, final int offset, final String text) throws InvalidTextFormatException {
+  public String format(Document doc, int offset, String text) throws InvalidTextFormatException {
 
-    if (StringUtils.isDigits(text)) {
+    if (Strings.isDigits(text)) {
       throw new InvalidTextFormatException("The text must only consist of digits 0 through 9.");
     }
 

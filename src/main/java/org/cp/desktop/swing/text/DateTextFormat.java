@@ -19,7 +19,6 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 import org.cp.desktop.util.Strings;
-import org.cp.elements.lang.StringUtils;
 
 public class DateTextFormat implements TextFormat {
 
@@ -100,9 +99,9 @@ public class DateTextFormat implements TextFormat {
   private String mutate(final int offset, final String value) {
 
     // first, get the digits from the value
-    String valueDigits = StringUtils.getDigits(value);
+    String valueDigits = Strings.getDigits(value);
 
-    if (StringUtils.hasText(valueDigits)) {
+    if (Strings.hasText(valueDigits)) {
 
       StringBuffer buffer = new StringBuffer();
 

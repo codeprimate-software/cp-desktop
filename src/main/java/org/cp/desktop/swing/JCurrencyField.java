@@ -26,10 +26,10 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
 
-import org.cp.elements.lang.StringUtils;
+import org.cp.desktop.util.Strings;
 
 @SuppressWarnings("unused")
-public final class JCurrencyField extends JTextField {
+public class JCurrencyField extends JTextField {
 
   private static final char DECIMAL_POINT_CHARACTER = '.';
   private static final char DOLLAR_SIGN_CHARACTER = '$';
@@ -87,7 +87,7 @@ public final class JCurrencyField extends JTextField {
    */
   public void setText(String text) {
 
-    if (!StringUtils.hasText(text)) {
+    if (!Strings.hasText(text)) {
       text = DEFAULT_CURRENCY_VALUE;
     }
     if (!text.trim().startsWith(DOLLAR_SIGN)) {
@@ -126,7 +126,7 @@ public final class JCurrencyField extends JTextField {
      */
     private boolean isValidCurrency(int offset, String value) throws BadLocationException {
 
-      boolean containsDecimal = StringUtils.contains(this.getText(0, getLength()), DECIMAL_POINT);
+      boolean containsDecimal = Strings.contains(this.getText(0, getLength()), DECIMAL_POINT);
       int decimalIndex = this.getText(0, getLength()).indexOf(DECIMAL_POINT);
 
       // check the number of digits after the decimal point
@@ -137,7 +137,7 @@ public final class JCurrencyField extends JTextField {
         }
       }
 
-      boolean valueContainsDecimal = StringUtils.contains(value, DECIMAL_POINT);
+      boolean valueContainsDecimal = Strings.contains(value, DECIMAL_POINT);
 
       decimalIndex = value.indexOf(DECIMAL_POINT);
 
@@ -161,7 +161,7 @@ public final class JCurrencyField extends JTextField {
         char c = value.charAt(indx);
         switch (offset + indx) {
           case 0:
-            boolean haveDollarSign = StringUtils.contains(this.getText(0, getLength()), DOLLAR_SIGN);
+            boolean haveDollarSign = Strings.contains(this.getText(0, getLength()), DOLLAR_SIGN);
             valid &= (c == DOLLAR_SIGN_CHARACTER && !haveDollarSign);
             break;
           case 1:
@@ -188,7 +188,7 @@ public final class JCurrencyField extends JTextField {
 
       int count = 0;
 
-      if (StringUtils.contains(sourceValue, containedValue)) {
+      if (Strings.contains(sourceValue, containedValue)) {
         int index = -1;
         while ((index = sourceValue.indexOf(containedValue)) != -1) {
           count++;

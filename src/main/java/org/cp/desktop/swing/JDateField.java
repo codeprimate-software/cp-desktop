@@ -42,9 +42,9 @@ import javax.swing.text.PlainDocument;
 import org.cp.desktop.awt.event.KeyEventUtils;
 import org.cp.desktop.swing.model.DateModel;
 import org.cp.desktop.swing.model.DefaultDateModel;
+import org.cp.desktop.util.Strings;
 import org.cp.elements.lang.Assert;
 import org.cp.elements.lang.ObjectUtils;
-import org.cp.elements.lang.StringUtils;
 import org.cp.elements.lang.annotation.NotNull;
 import org.cp.elements.lang.annotation.Nullable;
 import org.cp.elements.time.DateTimeUtils;
@@ -133,7 +133,7 @@ public class JDateField extends JTextField implements PropertyChangeListener {
    * @see #JDateField(Date)
    */
   public JDateField(@Nullable String dateValue) throws ParseException {
-    this(StringUtils.hasText(dateValue) ? DATE_FORMAT.parse(dateValue) : Calendar.getInstance().getTime());
+    this(Strings.hasText(dateValue) ? DATE_FORMAT.parse(dateValue) : Calendar.getInstance().getTime());
   }
 
   /**
@@ -297,7 +297,7 @@ public class JDateField extends JTextField implements PropertyChangeListener {
      */
     private boolean isValidDate(int offset, String value) {
 
-      Assert.argument(value, argument -> !StringUtils.hasText(argument) || argument.length() != 10,
+      Assert.argument(value, argument -> !Strings.hasText(argument) || argument.length() != 10,
         "Date [%s] is not valid", value);
 
       if (DEFAULT_DATE_VALUE.equals(value)) {
