@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cp.desktop.swing;
+package org.cp.desktop.swing.actions;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -23,7 +23,6 @@ import javax.swing.Icon;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
-import org.cp.desktop.swing.actions.AbstractDesktopAction;
 import org.cp.elements.util.ArrayUtils;
 
 @SuppressWarnings("unused")

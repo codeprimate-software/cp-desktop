@@ -21,8 +21,6 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
-import java.util.Arrays;
-import java.util.Iterator;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -31,12 +29,16 @@ import javax.swing.DesktopManager;
 import javax.swing.InputMap;
 import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import javax.swing.KeyStroke;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 
 import org.cp.desktop.swing.actions.CascadeAction;
+import org.cp.desktop.swing.actions.SplitAction;
+import org.cp.desktop.swing.actions.TileAction;
+import org.cp.elements.lang.ObjectUtils;
 
 // TODO: Finish coding the accelerator to navigate next and previous internal frames on the desktop!
 public class XDesktopPane extends JDesktopPane implements Desktop {
@@ -73,11 +75,17 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
     //setDragMode(OUTLINE_DRAG_MODE);
   }
 
-  // @deprecated
+  /**
+   * @deprecated
+   */
+  @Deprecated
+  @SuppressWarnings("unused")
   private void installKeyboardActions() {
-    final ActionMap actionMap = getActionMap();
+
+    ActionMap actionMap = getActionMap();
 
     actionMap.put(NEXT_FRAME_ACTION_KEY, new AbstractAction() {
+
       public void actionPerformed(ActionEvent event) {
         System.out.println("NEXT");
         next();
@@ -85,6 +93,7 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
     });
 
     actionMap.put(PREVIOUS_FRAME_ACTION_KEY, new AbstractAction() {
+
       public void actionPerformed(ActionEvent event) {
         System.out.println("PREVIOUS");
         previous();
@@ -103,11 +112,11 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
    */
   public synchronized Action getCascadeAction() {
 
-    if (cascadeAction == null) {
-      cascadeAction = new CascadeAction(this);
+    if (this.cascadeAction == null) {
+      this.cascadeAction = new CascadeAction(this);
     }
 
-    return cascadeAction;
+    return this.cascadeAction;
   }
 
   /**
@@ -116,8 +125,9 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
    * @return the internal frame that is currently active in the desktop, has focus, or most recently selected by
    * the user.
    */
+  @SuppressWarnings("unused")
   public XInternalFrame getCurrentFrame() {
-    return currentFrame;
+    return this.currentFrame;
   }
 
   /**
@@ -137,11 +147,11 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
    */
   protected synchronized InternalFrameListener getDesktopInternalFrameListener() {
 
-    if (desktopInternalFrameListener == null) {
-      desktopInternalFrameListener = new DesktopInternalFrameListener();
+    if (this.desktopInternalFrameListener == null) {
+      this.desktopInternalFrameListener = new DesktopInternalFrameListener();
     }
 
-    return desktopInternalFrameListener;
+    return this.desktopInternalFrameListener;
   }
 
   /**
@@ -152,11 +162,11 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
    */
   public synchronized DesktopManager getDesktopManager() {
 
-    if (desktopManager == null) {
-      desktopManager = new XDesktopManager(this);
+    if (this.desktopManager == null) {
+      this.desktopManager = new XDesktopManager(this);
     }
 
-    return desktopManager;
+    return this.desktopManager;
   }
 
   /**
@@ -165,8 +175,8 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
    */
   protected Point getRecommendedFrameLocation() {
 
-    int multiplier = (openedFrameCount++ % OPENED_FRAME_CASCADE_LIMIT);
-    int offset = (FRAME_LOCATION_OFFSET * multiplier);
+    int multiplier = openedFrameCount++ % OPENED_FRAME_CASCADE_LIMIT;
+    int offset = FRAME_LOCATION_OFFSET * multiplier;
 
     return new Point(offset, offset);
   }
@@ -194,11 +204,11 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
    */
   public synchronized Action getSplitAction(int orientation) {
 
-    if (splitAction == null) {
-      splitAction = new SplitAction(this, orientation);
+    if (this.splitAction == null) {
+      this.splitAction = new SplitAction(this, orientation);
     }
 
-    return splitAction;
+    return this.splitAction;
   }
 
   /**
@@ -207,11 +217,11 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
    */
   public synchronized Action getTileAction() {
 
-    if (tileAction == null) {
-      tileAction = new TileAction(this);
+    if (this.tileAction == null) {
+      this.tileAction = new TileAction(this);
     }
 
-    return tileAction;
+    return this.tileAction;
   }
 
   /**
@@ -261,12 +271,11 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
    */
   public void closeAll() {
 
-    for (Iterator it = Arrays.asList(getAllFrames()).iterator(); it.hasNext();) {
-      final XInternalFrame internalFrame = (XInternalFrame) it.next();
-      try {
-        internalFrame.setClosed(true);
-      }
-      catch (PropertyVetoException ignore) { }
+    for (JInternalFrame jInternalFrame : getAllFrames()) {
+
+      XInternalFrame xInternalFrame = (XInternalFrame) jInternalFrame;
+
+      ObjectUtils.doOperationSafely(args -> { xInternalFrame.setClosed(true); return xInternalFrame; });
     }
   }
 
@@ -313,10 +322,7 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
     XInternalFrame selectedFrame = (XInternalFrame) getSelectedFrame();
 
     if (selectedFrame != null) {
-      try {
-        selectedFrame.getNext().setSelected(true);
-      }
-      catch (PropertyVetoException ignore) { }
+      ObjectUtils.doOperationSafely(args -> { selectedFrame.getNext().setSelected(true); return selectedFrame; });
     }
   }
 
@@ -338,8 +344,11 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
     if (getAllFrames().length > 0) {
 
       XInternalFrame selectedFrame = (XInternalFrame) getSelectedFrame();
+
       selectedFrame = selectedFrame != null ? selectedFrame : (XInternalFrame) getAllFrames()[0];
-      final XInternalFrame nextFrame = selectedFrame.getNext();
+
+      XInternalFrame nextFrame = selectedFrame.getNext();
+
       selectedFrame.setNext(internalFrame);
       nextFrame.setPrevious(internalFrame);
       internalFrame.setNextPrevious(nextFrame, selectedFrame);
@@ -367,10 +376,7 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
     XInternalFrame selectedFrame = (XInternalFrame) getSelectedFrame();
 
     if (selectedFrame != null) {
-      try {
-        selectedFrame.getPrevious().setSelected(true);
-      }
-      catch (PropertyVetoException ignore) { }
+      ObjectUtils.doOperationSafely(args -> { selectedFrame.getPrevious().setSelected(true); return selectedFrame; });
     }
   }
 
@@ -384,7 +390,7 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
   /**
    * The DesktopInternalFrameListener class handles internal frame events and notifies this desktop component.
    */
-  private class DesktopInternalFrameListener extends InternalFrameAdapter {
+  protected class DesktopInternalFrameListener extends InternalFrameAdapter {
 
     public void internalFrameClosing(InternalFrameEvent event) {
       close((XInternalFrame) event.getInternalFrame());

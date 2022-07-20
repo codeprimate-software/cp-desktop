@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.cp.desktop.swing;
+package org.cp.desktop.swing.actions;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -24,12 +24,9 @@ import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.SwingConstants;
 
-import org.cp.desktop.swing.actions.AbstractDesktopAction;
 import org.cp.elements.util.ArrayUtils;
 
 public class SplitAction extends AbstractDesktopAction {
-
-  private static final int DEFAULT_ORIENTATION = SwingConstants.VERTICAL;
 
   private int orientation;
 
@@ -81,8 +78,7 @@ public class SplitAction extends AbstractDesktopAction {
       int x = 0;
       int y = 0;
 
-      for (int index = 0; index < internalFrames.length; index++) {
-        JInternalFrame frame = internalFrames[index];
+      for (JInternalFrame frame : internalFrames) {
         if (!frame.isClosed() && frame.isVisible()) {
           try {
             restoreFrame(frame);
@@ -96,7 +92,8 @@ public class SplitAction extends AbstractDesktopAction {
               x += frameSize.width;
             }
           }
-          catch (PropertyVetoException ignore) { }
+          catch (PropertyVetoException ignore) {
+          }
         }
       }
     }
@@ -114,8 +111,8 @@ public class SplitAction extends AbstractDesktopAction {
 
     Dimension desktopSize = desktop.getSize();
 
-    int width = 0;
-    int height = 0;
+    int width;
+    int height;
 
     if (getOrientation() == SwingConstants.HORIZONTAL) {
       width = desktopSize.width;
