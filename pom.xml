@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.codeprimate</groupId>
+		<artifactId>cp-core</artifactId>
+		<version>1.7.0</version>
+	</parent>
+
+	<artifactId>cp-desktop</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+
+	<name>Desktop</name>
+	<description>
+		Codeprimate Desktop is a Java library containing extensions and components for the Java AWT and Swing frameworks.
+	</description>
+	<url>https://github.com/codeprimate-software/cp-desktop</url>
+
+	<properties>
+		<java-module-name>codeprimate.desktop</java-module-name>
+		<cp-elements.version>1.0.0-SNAPSHOT</cp-elements.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.codeprimate</groupId>
+			<artifactId>cp-elements</artifactId>
+			<version>${cp-elements.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>
