@@ -25,9 +25,10 @@ import org.cp.elements.lang.annotation.Nullable;
  *
  * @author John Blum
  * @see java.lang.String
+ * @see org.cp.elements.lang.StringUtils
  * @since 1.0.0
  */
-public abstract class Strings {
+public abstract class Strings extends StringUtils {
 
   public static int count(@Nullable String value, char character) {
 
