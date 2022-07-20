@@ -27,7 +27,7 @@ import org.cp.desktop.swing.actions.AbstractDesktopAction;
 import org.cp.elements.util.ArrayUtils;
 
 @SuppressWarnings("unused")
-public final class TileAction extends AbstractDesktopAction {
+public class TileAction extends AbstractDesktopAction {
 
   /**
    * Creates an instance of the TileAction class initilized with the specified desktop.
@@ -60,7 +60,7 @@ public final class TileAction extends AbstractDesktopAction {
    * Method called to carry out the action of tiling the internal frames in the desktop.
    * @param event the ActionEvent capturing the event details of the tile operation.
    */
-  public void actionPerformed(final ActionEvent event) {
+  public void actionPerformed(ActionEvent event) {
 
     JInternalFrame[] internalFrames = getDesktop().getAllFrames();
 

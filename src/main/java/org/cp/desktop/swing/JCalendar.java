@@ -29,7 +29,7 @@ import org.cp.desktop.swing.plaf.CalendarUI;
 import org.cp.desktop.swing.plaf.basic.BasicCalendarUI;
 import org.cp.elements.lang.Assert;
 
-public final class JCalendar extends JComponent {
+public class JCalendar extends JComponent {
 
   private static final boolean DEFAULT_DOUBLE_BUFFERED = true;
   private static final boolean DEFAULT_FOCUSABLE = true;
@@ -55,7 +55,8 @@ public final class JCalendar extends JComponent {
    * Creates an instance of the JCalendar UI Swing component class initialized to the current date and time.
    * @param calendar a Calendar object specifying the date and time used to initialize this calendar widget.
    */
-  public JCalendar(final Calendar calendar) {
+  public JCalendar(Calendar calendar) {
+
     setBackground(BACKGROUND_COLOR);
     setBorder(BorderFactory.createLineBorder(BORDER_COLOR, 2));
     setDoubleBuffered(DEFAULT_DOUBLE_BUFFERED);
@@ -147,7 +148,7 @@ public final class JCalendar extends JComponent {
    * Sets the specified UI class responsible for handling the details of the calendar's user interface.
    * @param ui the CalendarUI class responsible for the calendar's user interface.
    */
-  public void setUI(final CalendarUI ui) {
+  public void setUI(CalendarUI ui) {
     super.setUI(ui);
   }
 

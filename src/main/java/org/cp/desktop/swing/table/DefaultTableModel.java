@@ -93,7 +93,7 @@ public class DefaultTableModel extends AbstractTableModel {
    * @param columnIndex the column index in this table.
    * @return the Object value at the specified cell (rowIndex, column) in this table.
    */
-  public Object getValueAt(int rowIndex, final int columnIndex) {
+  public Object getValueAt(int rowIndex, int columnIndex) {
     return getTable().getValue(rowIndex, columnIndex);
   }
 

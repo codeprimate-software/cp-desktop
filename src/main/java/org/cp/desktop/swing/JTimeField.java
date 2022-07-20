@@ -210,7 +210,7 @@ public class JTimeField extends JTextField implements PropertyChangeListener {
    * The TimeDocument class is the default document used by the JTimeField component class  to represent time
    * in a standard JTextField component.
    */
-  private final class TimeDocument extends PlainDocument {
+  private class TimeDocument extends PlainDocument {
 
     private static final char A_CHAR = 'a';
     private static final char COLAN_CHAR = ':';
@@ -267,7 +267,7 @@ public class JTimeField extends JTextField implements PropertyChangeListener {
     }
   }
 
-  private static final class TimeField {
+  private static class TimeField {
 
     private final int calendarConstant;
     private final int selectionEnd;
@@ -398,7 +398,7 @@ public class JTimeField extends JTextField implements PropertyChangeListener {
    * The TimeFieldKeyListener is used by the JTimeField component class to track key events targeted at
    * editing and traversing the time field text component.
    */
-  private final class TimeFieldKeyListener extends KeyAdapter {
+  private class TimeFieldKeyListener extends KeyAdapter {
 
     public void keyPressed(KeyEvent event) {
 
@@ -460,7 +460,7 @@ public class JTimeField extends JTextField implements PropertyChangeListener {
    * The TimeFieldMouseInputListener class is used by the JTimeField component class to track mouse events
    * when the user sets focus to this time field text component.
    */
-  private final class TimeFieldMouseInputListener extends MouseInputAdapter {
+  private class TimeFieldMouseInputListener extends MouseInputAdapter {
 
     /**
      * Called to handle the MouseEvents defined by this TimeFieldMouseListener class.
@@ -496,7 +496,7 @@ public class JTimeField extends JTextField implements PropertyChangeListener {
     }
   }
 
-  private final class TimeFieldSelectionModel implements SelectionModel {
+  private class TimeFieldSelectionModel implements SelectionModel {
 
     private final TimeField AMPM = new TimeField("am/pm", Calendar.AM_PM, 6, 8);
     private final TimeField HOUR = new TimeField("hour", Calendar.HOUR_OF_DAY, 0, 2);
@@ -527,7 +527,8 @@ public class JTimeField extends JTextField implements PropertyChangeListener {
       return selectedTimeField;
     }
 
-    public void setSelectedTimeField(final TimeField selectedTimeField) {
+    public void setSelectedTimeField(TimeField selectedTimeField) {
+
       this.selectedTimeField = selectedTimeField;
       setSelectionStart(this.selectedTimeField.getSelectionStart());
       setSelectionEnd(this.selectedTimeField.getSelectionEnd());

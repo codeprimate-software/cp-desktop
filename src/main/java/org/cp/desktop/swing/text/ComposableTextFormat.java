@@ -19,7 +19,7 @@ import javax.swing.text.Document;
 
 import org.cp.elements.lang.Assert;
 
-public final class ComposableTextFormat implements TextFormat {
+public class ComposableTextFormat implements TextFormat {
 
   private final TextFormat textFormat0;
   private final TextFormat textFormat1;

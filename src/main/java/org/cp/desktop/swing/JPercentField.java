@@ -29,7 +29,7 @@ import javax.swing.text.PlainDocument;
 
 import org.cp.desktop.util.Strings;
 
-public final class JPercentField extends JTextField {
+public class JPercentField extends JTextField {
 
   private static final String PERCENT_SIGN = "%";
   private static final String DEFAULT_PERCENT_VALUE = "0.0" + PERCENT_SIGN;
@@ -49,8 +49,10 @@ public final class JPercentField extends JTextField {
    * @param percentage a String representation of the percent value used to initialize this percent field
    * component.
    */
-  public JPercentField(final String percentage) {
+  public JPercentField(String percentage) {
+
     super(8);
+
     addKeyListener(new PercentFieldKeyListener());
     setText(percentage);
   }
@@ -72,9 +74,12 @@ public final class JPercentField extends JTextField {
    * as a fractional decimal value.
    */
   public BigDecimal getPercentage() {
-    final String percentValue = getText();
+
+    String percentValue = getText();
+
     // remove the percent sign
-    final BigDecimal decimalValue = new BigDecimal(percentValue.substring(0, percentValue.length() - 1));
+    BigDecimal decimalValue = new BigDecimal(percentValue.substring(0, percentValue.length() - 1));
+
     // calculate the decimal value by dividing by 100%
     return decimalValue.divide(new BigDecimal(100.0), BigDecimal.ROUND_HALF_EVEN);
   }
@@ -97,7 +102,7 @@ public final class JPercentField extends JTextField {
    * The PercentDocument class is used by the JPercentField component to format the JTextField component
    * as a percentage input field.
    */
-  private final class PercentDocument extends PlainDocument {
+  private class PercentDocument extends PlainDocument {
 
     private static final char DECIMAL_POINT_CHARACTER = '.';
     private static final char NEGATIVE_SIGN_CHARACTER = '-';
@@ -156,7 +161,7 @@ public final class JPercentField extends JTextField {
       return valid;
     }
 
-    public void remove(final int offset, final int length) throws BadLocationException {
+    public void remove(int offset, int length) throws BadLocationException {
       if (Strings.contains(this.getText(offset, length), PERCENT_SIGN)) {
         return;
       }
@@ -168,7 +173,7 @@ public final class JPercentField extends JTextField {
    * The PercentFieldKeyListener is used by the JPercentField component to track key events targeted at
    * editing and traversing the percentage field component.
    */
-  public final class PercentFieldKeyListener extends KeyAdapter {
+  public class PercentFieldKeyListener extends KeyAdapter {
 
     /**
      * Invoked when a key has been pressed.  This method validates navigation for the JPercentField.

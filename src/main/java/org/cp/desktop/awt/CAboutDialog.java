@@ -34,7 +34,7 @@ import org.cp.desktop.awt.support.URLListener;
 import org.cp.desktop.awt.support.WebBrowser;
 
 @SuppressWarnings("unused")
-public final class CAboutDialog extends Dialog {
+public class CAboutDialog extends Dialog {
 
   private static final boolean MODAL = true;
 
@@ -151,7 +151,7 @@ public final class CAboutDialog extends Dialog {
       new Insets(10, 10, 10, 10), 10, 10);
   }
 
-  private static final class CompanyLogoLabel extends ImageLabel {
+  private static class CompanyLogoLabel extends ImageLabel {
 
     public CompanyLogoLabel(Image img) {
       super("               ", img);
@@ -166,7 +166,7 @@ public final class CAboutDialog extends Dialog {
     }
   }
 
-  private static final class ProductLogoLabel extends ImageLabel {
+  private static class ProductLogoLabel extends ImageLabel {
 
     public ProductLogoLabel(Image img) {
       super("                              ", img);

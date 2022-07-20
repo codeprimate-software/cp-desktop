@@ -66,7 +66,7 @@ public class DateTextFormat implements TextFormat {
    * @param dateValue the String value representing the current date value.
    * @return a boolean value indicating if the current String dateValue is a valid date format.
    */
-  protected boolean isValidDateFormat(final String dateValue) {
+  protected boolean isValidDateFormat(String dateValue) {
 
     if (dateValue.length() > DATE_FORMAT.length()) {
       return false;
@@ -96,7 +96,7 @@ public class DateTextFormat implements TextFormat {
    * @param value the value being inserted into the document of the text component.
    * @return the modified value with date formatting imposed.
    */
-  private String mutate(final int offset, final String value) {
+  private String mutate(int offset, String value) {
 
     // first, get the digits from the value
     String valueDigits = Strings.getDigits(value);

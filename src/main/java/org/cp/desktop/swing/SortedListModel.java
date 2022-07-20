@@ -51,11 +51,11 @@ public class SortedListModel implements ListModel {
     Collections.sort(indexList, new IndexListComparator());
   }
 
-  public void addListDataListener(final ListDataListener l) {
+  public void addListDataListener(ListDataListener l) {
     getListModel().addListDataListener(l);
   }
 
-  public Object getElementAt(final int index) {
+  public Object getElementAt(int index) {
     return getListModel().getElementAt(getIndexList().get(index));
   }
 
@@ -63,8 +63,8 @@ public class SortedListModel implements ListModel {
     return getListModel().getSize();
   }
 
-  public void removeListDataListener(final ListDataListener l) {
-    getListModel().removeListDataListener(l);
+  public void removeListDataListener(ListDataListener listener) {
+    getListModel().removeListDataListener(listener);
   }
 
   protected List<Integer> getIndexList() {
@@ -107,26 +107,28 @@ public class SortedListModel implements ListModel {
     }
   }
 
-  private final class IndexListComparator implements Comparator<Integer> {
+  private class IndexListComparator implements Comparator<Integer> {
 
-    public int compare(final Integer index0, final Integer index1) {
-      final Object element0 = getListModel().getElementAt(index0);
-      final Object element1 = getListModel().getElementAt(index1);
+    public int compare(Integer index0, Integer index1) {
+
+      Object element0 = getListModel().getElementAt(index0);
+      Object element1 = getListModel().getElementAt(index1);
+
       return getOrderBy().compare(element0, element1);
     }
   }
 
-  private final class ListModelDataListener implements ListDataListener {
+  private class ListModelDataListener implements ListDataListener {
 
-    public void contentsChanged(final ListDataEvent e) {
+    public void contentsChanged(ListDataEvent event) {
       handleModelChange();
     }
 
-    public void intervalAdded(final ListDataEvent e) {
+    public void intervalAdded(ListDataEvent e) {
       handleModelChange();
     }
 
-    public void intervalRemoved(final ListDataEvent e) {
+    public void intervalRemoved(ListDataEvent e) {
       handleModelChange();
     }
   }

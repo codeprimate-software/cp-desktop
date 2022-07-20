@@ -27,7 +27,7 @@ import javax.swing.SwingConstants;
 import org.cp.desktop.swing.actions.AbstractDesktopAction;
 import org.cp.elements.util.ArrayUtils;
 
-public final class SplitAction extends AbstractDesktopAction {
+public class SplitAction extends AbstractDesktopAction {
 
   private static final int DEFAULT_ORIENTATION = SwingConstants.VERTICAL;
 

@@ -173,7 +173,7 @@ public abstract class AbstractListener implements EventListener {
    * @throws PropertyNotFoundException if the property specified by name does not exist on the registered bean.
    * @see AbstractListener#getPropertyDescriptor(String)
    */
-  protected Method getWriteMethod(final String propertyName) throws NoSuchMethodException, PropertyNotFoundException {
+  protected Method getWriteMethod(String propertyName) throws NoSuchMethodException, PropertyNotFoundException {
 
     PropertyDescriptor propertyDescriptor = getPropertyDescriptor(propertyName);
     Method writeMethod = propertyDescriptor.getWriteMethod();

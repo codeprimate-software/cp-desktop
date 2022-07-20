@@ -149,8 +149,10 @@ public class GridCanvas extends JComponent {
    * Paints, or fills in, the background of the GridCanvas component.
    * @param g2 the Graphics object used to paint the background of the GridCanvas.
    */
-  private void paintBackground(final Graphics2D g2) {
-    final Color theColor = g2.getColor();
+  private void paintBackground(Graphics2D g2) {
+
+    Color theColor = g2.getColor();
+
     g2.setColor(Color.white);
     g2.fill(new Rectangle2D.Double(0, 0, getWidth(), getHeight()));
     g2.setColor(theColor);
@@ -159,7 +161,7 @@ public class GridCanvas extends JComponent {
   /**
    * The GridPoint class used to represent the cells as (x, y) coordinates in the grid canvas.
    */
-  public static final class GridPoint {
+  public static class GridPoint {
 
     private final int x;
     private final int y;

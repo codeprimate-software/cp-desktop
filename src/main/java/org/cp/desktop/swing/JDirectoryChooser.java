@@ -73,7 +73,7 @@ public class JDirectoryChooser extends JDialog {
    * to select a directory.
    * @param owner a Frame object owning this dialog.
    */
-  public JDirectoryChooser(final Frame owner) {
+  public JDirectoryChooser(Frame owner) {
     super(owner, DEFAULT_TITLE, MODAL);
     setSize(DIALOG_SIZE);
     buildUI();
@@ -128,9 +128,13 @@ public class JDirectoryChooser extends JDialog {
       });
 
       fileSystemTree.addKeyListener(new KeyAdapter() {
-        public void keyPressed(final KeyEvent event) {
+
+        public void keyPressed(KeyEvent event) {
+
           if (event.getKeyCode() == KeyEvent.VK_F5) {
-            final DefaultMutableTreeNode selectedTreeNode = (DefaultMutableTreeNode) fileSystemTree.getLastSelectedPathComponent();
+
+            DefaultMutableTreeNode selectedTreeNode =
+              (DefaultMutableTreeNode) fileSystemTree.getLastSelectedPathComponent();
 
             if (selectedTreeNode != null) {
               refreshDirectory(selectedTreeNode);
@@ -293,7 +297,7 @@ public class JDirectoryChooser extends JDialog {
    * are smbolic to the type of drive/folder in the file system of the
    * localhost.
    */
-  public final class FileSystemTreeCellRenderer extends DefaultTreeCellRenderer {
+  public class FileSystemTreeCellRenderer extends DefaultTreeCellRenderer {
 
     private final Map<Object, Object> resourceMap = new HashMap<>();
 

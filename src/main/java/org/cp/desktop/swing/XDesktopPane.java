@@ -235,7 +235,7 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
    * frame chain.
    * @param internalFrame the internal frame currently being closed on the desktop.
    */
-  private void close(final XInternalFrame internalFrame) {
+  private void close(XInternalFrame internalFrame) {
 
     if (getAllFrames().length > 1) {
 
@@ -384,7 +384,7 @@ public class XDesktopPane extends JDesktopPane implements Desktop {
   /**
    * The DesktopInternalFrameListener class handles internal frame events and notifies this desktop component.
    */
-  private final class DesktopInternalFrameListener extends InternalFrameAdapter {
+  private class DesktopInternalFrameListener extends InternalFrameAdapter {
 
     public void internalFrameClosing(InternalFrameEvent event) {
       close((XInternalFrame) event.getInternalFrame());

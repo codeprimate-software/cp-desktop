@@ -25,7 +25,7 @@ import javax.swing.JInternalFrame;
 import org.cp.elements.lang.Assert;
 import org.cp.elements.lang.annotation.NotNull;
 
-public final class XDesktopManager extends DefaultDesktopManager {
+public class XDesktopManager extends DefaultDesktopManager {
 
   private final XDesktopPane desktop;
 
@@ -52,7 +52,7 @@ public final class XDesktopManager extends DefaultDesktopManager {
    * @param frame the internal frame of the desktop being activated.
    * @see XDesktopPane#setCurrentFrame
    */
-  public void activateFrame(final JInternalFrame frame) {
+  public void activateFrame(JInternalFrame frame) {
     super.activateFrame(frame);
     getDesktop().setCurrentFrame((XInternalFrame) frame);
   }

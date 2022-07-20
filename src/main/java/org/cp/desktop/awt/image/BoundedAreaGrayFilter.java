@@ -20,8 +20,7 @@ import java.awt.image.RGBImageFilter;
 
 import org.cp.elements.lang.Assert;
 
-@SuppressWarnings("unused")
-public final class BoundedAreaGrayFilter extends RGBImageFilter {
+public class BoundedAreaGrayFilter extends RGBImageFilter {
 
   private static final boolean DEFAULT_FILL_COLORED = true;
 

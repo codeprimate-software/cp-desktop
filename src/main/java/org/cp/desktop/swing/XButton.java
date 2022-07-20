@@ -39,8 +39,8 @@ public class XButton extends JButton {
    * Creates a button where properties are taken from the Action supplied.
    * @param a is an Action object defining the behavior, or action, of this button when clicked.
    */
-  public XButton(final Action a) {
-    super(a);
+  public XButton(Action action) {
+    super(action);
     init();
   }
 
@@ -48,7 +48,7 @@ public class XButton extends JButton {
    * Creates a button with an icon.
    * @param icon is an image to be displayed on the button.
    */
-  public XButton(final Icon icon) {
+  public XButton(Icon icon) {
     super(icon);
     init();
   }
@@ -57,7 +57,7 @@ public class XButton extends JButton {
    * Creates a button with text.
    * @param text is a String value containing the text to be displayed on the button.
    */
-  public XButton(final String text) {
+  public XButton(String text) {
     super(text);
     init();
   }
@@ -67,7 +67,7 @@ public class XButton extends JButton {
    * @param icon is an image to be displayed on the button.
    * @param text is a String value containing the text to be displayed on the button.
    */
-  public XButton(final String text, final Icon icon) {
+  public XButton(String text, Icon icon) {
     super(text, icon);
     init();
   }
@@ -86,41 +86,41 @@ public class XButton extends JButton {
    * This method is called to enable or disable this button.
    * @param enable is a boolean value indicating true if the button should be enabled, false otherwise.
    */
-  public void setEnabled(final boolean enable) {
+  public void setEnabled(boolean enable) {
     super.setEnabled(enable);
     setBorderPainted(false);
   }
 
-  private final class FocusHandler extends FocusAdapter {
+  private class FocusHandler extends FocusAdapter {
 
-    public void focusLost(FocusEvent fe) {
+    public void focusLost(FocusEvent event) {
       if (isEnabled()) {
         setBorderPainted(false);
       }
     }
   }
 
-  private final class MouseHandler extends MouseAdapter {
+  private class MouseHandler extends MouseAdapter {
 
-    public void mouseEntered(MouseEvent me) {
+    public void mouseEntered(MouseEvent event) {
       if (isEnabled()) {
         setBorderPainted(true);
       }
     }
 
-    public void mouseExited(MouseEvent me) {
+    public void mouseExited(MouseEvent event) {
       if (isEnabled()) {
         setBorderPainted(false);
       }
     }
 
-    public void mousePressed(MouseEvent me) {
+    public void mousePressed(MouseEvent event) {
       if (isEnabled()) {
         setBorder(BorderFactory.createLoweredBevelBorder());
       }
     }
 
-    public void mouseReleased(MouseEvent me) {
+    public void mouseReleased(MouseEvent event) {
       if (isEnabled()) {
         setBorder(BorderFactory.createRaisedBevelBorder());
       }

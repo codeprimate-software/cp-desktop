@@ -41,7 +41,7 @@ public class SsnTextFormat implements TextFormat {
    * @throws InvalidTextFormatException if the text format is not valid input to the
    * text field component.
    */
-  public final String format(Document doc, int offset, String text) throws InvalidTextFormatException {
+  public String format(Document doc, int offset, String text) throws InvalidTextFormatException {
 
     try {
       String currentSsn = doc.getText(0, doc.getLength());

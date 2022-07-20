@@ -34,7 +34,7 @@ public abstract class PixelGenerator {
    * pixel in the image.
    * @see PixelGenerator#getPixels(Rectangle, Shape)
    */
-  public static int[] getPixels(final Dimension canvasSize, final Shape geometricShape) {
+  public static int[] getPixels(Dimension canvasSize, Shape geometricShape) {
 
     int[] pixels = new int[canvasSize.width * canvasSize.height];
 

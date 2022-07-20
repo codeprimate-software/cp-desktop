@@ -38,7 +38,7 @@ import org.cp.desktop.awt.image.ImageUtils;
 import org.cp.desktop.awt.support.WindowUtils;
 import org.cp.elements.lang.Assert;
 
-public final class JSplashWindow extends JWindow {
+public class JSplashWindow extends JWindow {
 
   /**
    * Creates an instance of the JSplashWindow UI component class initialized with the specified JFrame owner
@@ -125,7 +125,7 @@ public final class JSplashWindow extends JWindow {
     return null;
   }
 
-  private final class FrameOwnerWindowListener extends WindowAdapter {
+  private class FrameOwnerWindowListener extends WindowAdapter {
 
     public void windowOpened(WindowEvent event) {
       setVisible(false);
@@ -133,7 +133,7 @@ public final class JSplashWindow extends JWindow {
     }
   }
 
-  private final class SplashWindowMouseListener extends MouseAdapter {
+  private class SplashWindowMouseListener extends MouseAdapter {
 
     public void mousePressed(MouseEvent event) {
       setVisible(false);
@@ -141,7 +141,7 @@ public final class JSplashWindow extends JWindow {
     }
   }
 
-  private final class SplashWindowRunner implements Runnable {
+  private class SplashWindowRunner implements Runnable {
 
     private final int numberOfSeconds;
 

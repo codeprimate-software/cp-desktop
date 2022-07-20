@@ -55,8 +55,10 @@ public class JCurrencyField extends JTextField {
    * in US currency.
    * @param currency a String value specifyig the default monetary value to set the currency field component to.
    */
-  public JCurrencyField(final String currency) {
+  public JCurrencyField(String currency) {
+
     super(8);
+
     addKeyListener(new CurrencyFieldKeyListener());
     setText(currency);
     getCaret().setDot(1); // set the caret position past the dollar sign.
@@ -103,7 +105,7 @@ public class JCurrencyField extends JTextField {
    * NOTE: on a text replacement, the AbstractDocument's (extended by PlainDocument) replace method
    * will call remove followed by insertString.
    */
-  private static final class CurrencyDocument extends PlainDocument {
+  private static class CurrencyDocument extends PlainDocument {
 
     /**
      * Validates the String value being inserted into the CurrencyField and performs the insert.
@@ -184,15 +186,17 @@ public class JCurrencyField extends JTextField {
      * @param containedValue the String value being counted for occurences in the sourceValue String.
      * @return the number of occurences of containedValue in sourceValue.
      */
-    private static int countOccurences(String sourceValue, final String containedValue) {
+    private static int countOccurences(String sourceValue, String containedValue) {
 
       int count = 0;
 
       if (Strings.contains(sourceValue, containedValue)) {
-        int index = -1;
+
+        int index;
+
         while ((index = sourceValue.indexOf(containedValue)) != -1) {
-          count++;
           sourceValue = sourceValue.substring(index + 1);
+          count++;
         }
       }
 
@@ -216,17 +220,18 @@ public class JCurrencyField extends JTextField {
    * The CurrencyFieldKeyListener is used by the JCurrencyField component to track key events that edit and/or
    * traverse the currency field component.
    */
-  private final class CurrencyFieldKeyListener extends KeyAdapter {
+  private class CurrencyFieldKeyListener extends KeyAdapter {
 
-    public void keyPressed(final KeyEvent e) {
-      switch (e.getKeyCode()) {
+    public void keyPressed(KeyEvent event) {
+
+      switch (event.getKeyCode()) {
         case KeyEvent.VK_HOME:
           getCaret().setDot(1); // do not allow the cursor before the dollar sign
-          e.consume(); // consumer the key event since the cursor position was set manually
+          event.consume(); // consumer the key event since the cursor position was set manually
           break;
         case KeyEvent.VK_LEFT:
           if (getCaret().getDot() == 1) {
-            e.consume(); // cannot move before the dollar sign
+            event.consume(); // cannot move before the dollar sign
           }
           break;
       }

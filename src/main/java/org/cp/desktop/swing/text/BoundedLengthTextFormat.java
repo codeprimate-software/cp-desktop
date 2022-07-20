@@ -17,7 +17,7 @@ package org.cp.desktop.swing.text;
 
 import javax.swing.text.Document;
 
-public final class BoundedLengthTextFormat implements TextFormat {
+public class BoundedLengthTextFormat implements TextFormat {
 
   private final int maxLength;
 

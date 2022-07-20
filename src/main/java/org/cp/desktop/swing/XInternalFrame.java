@@ -53,14 +53,11 @@ public abstract class XInternalFrame extends JInternalFrame {
    * @param maximizable a boolean value indicating whether the user can maximize this internal frame.
    * @param iconifiable a boolean value indicating whether the internal frame can iconified.
    */
-  public XInternalFrame(final XInternalFrame next,
-                        final XInternalFrame previous,
-                        final String windowTitle,
-                        final boolean resizable,
-                        final boolean closable,
-                        final boolean maximizable,
-                        final boolean iconifiable) {
+  public XInternalFrame(XInternalFrame next, XInternalFrame previous, String windowTitle,
+      boolean resizable, boolean closable, boolean maximizable, boolean iconifiable) {
+
     super(windowTitle, resizable, closable, maximizable, iconifiable);
+
     setNextPrevious(next, previous);
     //installKeyboardActions();
     installKeyListener();
@@ -75,31 +72,33 @@ public abstract class XInternalFrame extends JInternalFrame {
    * internal frame within the desktop
    * @param windowTitle a String value specifying the title to display in this internal frame's title bar.
    */
-  public XInternalFrame(final XInternalFrame next,
-                        final XInternalFrame previous,
-                        final String windowTitle) {
+  public XInternalFrame(XInternalFrame next, XInternalFrame previous, String windowTitle) {
     this(next, previous, windowTitle, DEFAULT_RESIZABLE, DEFAULT_CLOSABLE, DEFAULT_MAXIMIZABLE, DEFAULT_ICONIFIABLE);
   }
 
   // @deprecated
   private void installKeyboardActions() {
-    final ActionMap actionMap = getActionMap();
+
+    ActionMap actionMap = getActionMap();
 
     actionMap.put(NEXT_FRAME_ACTION_KEY, new AbstractAction() {
-      public void actionPerformed(final ActionEvent event) {
+
+      public void actionPerformed(ActionEvent event) {
         System.out.println("NEXT");
         ((XDesktopPane) getParent()).next();
       }
     });
 
     actionMap.put(PREVIOUS_FRAME_ACTION_KEY, new AbstractAction() {
-      public void actionPerformed(final ActionEvent event) {
+
+      public void actionPerformed(ActionEvent event) {
         System.out.println("PREVIOUS ACTION");
         ((XDesktopPane) getParent()).previous();
       }
     });
 
-    final InputMap keyMap = getInputMap(JComponent.WHEN_FOCUSED);
+    InputMap keyMap = getInputMap(JComponent.WHEN_FOCUSED);
+
     keyMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_RIGHT, KeyEvent.VK_ALT, false), NEXT_FRAME_ACTION_KEY);
     keyMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, KeyEvent.VK_ALT, false), PREVIOUS_FRAME_ACTION_KEY);
   }
@@ -107,8 +106,9 @@ public abstract class XInternalFrame extends JInternalFrame {
   // @deprecated
   private void installKeyListener() {
     addKeyListener(new KeyAdapter() {
-      public void keyPressed(final KeyEvent event) {
-        System.out.println("TEST");
+
+      public void keyPressed(KeyEvent event) {
+
         if (event.getModifiers() == KeyEvent.VK_ALT) {
           if (event.getKeyCode() == KeyEvent.VK_LEFT) {
             ((XDesktopPane) getParent()).previous();
@@ -142,7 +142,7 @@ public abstract class XInternalFrame extends JInternalFrame {
    * @param next is an XInternalFrame object referring to the next internal frame after this internal frame within
    * the desktop.
    */
-  public void setNext(final XInternalFrame next) {
+  public void setNext(XInternalFrame next) {
     this.next = next;
   }
 
@@ -154,7 +154,7 @@ public abstract class XInternalFrame extends JInternalFrame {
    * @param previous is an XInternalFrame object referring to the previous internal frame before this internal frame
    * within the desktop.
    */
-  public final void setNextPrevious(final XInternalFrame next, final XInternalFrame previous) {
+  public final void setNextPrevious(XInternalFrame next, XInternalFrame previous) {
     this.next = next;
     this.previous = previous;
   }
@@ -164,7 +164,7 @@ public abstract class XInternalFrame extends JInternalFrame {
    * @param previous is an XInternalFrame object referring to the previous internal frame before this internal frame
    * within the desktop.
    */
-  public void setPrevious(final XInternalFrame previous) {
+  public void setPrevious(XInternalFrame previous) {
     this.previous = previous;
   }
 

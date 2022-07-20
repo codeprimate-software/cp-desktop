@@ -41,8 +41,12 @@ import org.cp.desktop.awt.image.ImageUtils;
 public class GraphicsUtil extends ImageUtils {
 
   private static final Color DEFAULT_COLOR = Color.black;
-  private static final RenderingHints ANTIALIASED_RENDERING = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-  private static final Stroke DEFAULT_STROKE = new BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);
+
+  private static final RenderingHints ANTIALIASED_RENDERING =
+    new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+  private static final Stroke DEFAULT_STROKE = new
+    BasicStroke(2.0f, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);
 
   /**
    * Protected constructor used to allow this class to be extended, but to disallow any instances of the class

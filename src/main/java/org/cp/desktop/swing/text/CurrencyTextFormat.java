@@ -43,7 +43,7 @@ public class CurrencyTextFormat implements TextFormat {
    * @throws InvalidTextFormatException if the text format is not valid input to the
    * text field component.
    */
-  public String format(final Document doc, final int offset, String text) throws InvalidTextFormatException {
+  public String format(Document doc, int offset, String text) throws InvalidTextFormatException {
 
     try {
       String currentCurrency = doc.getText(0, doc.getLength());
@@ -68,7 +68,7 @@ public class CurrencyTextFormat implements TextFormat {
    * @param currency the String value representing the current currency value.
    * @return a boolean value indicating if the current String currency is a valid currency format.
    */
-  private boolean isValidCurrency(final String currency) {
+  private boolean isValidCurrency(String currency) {
 
     if (Strings.count(currency, DECIMAL_POINT_CHAR) > 1) {
       return false;
@@ -105,7 +105,7 @@ public class CurrencyTextFormat implements TextFormat {
    * @param value the value being inserted into the document of the text component.
    * @return the modified value with currency formatting imposed.
    */
-  private String mutate(final int offset, String value) {
+  private String mutate(int offset, String value) {
 
     if (Strings.hasText(value)) {
       if ((offset == DOLLAR_SIGN_POSITION) && !value.startsWith(String.valueOf(DOLLAR_SIGN_CHAR))) {

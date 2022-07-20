@@ -28,7 +28,7 @@ public class InvalidTextFormatException extends Exception {
    * Creates an instance of the InvalidTextFormatException class initialized with a description of the problem.
    * @param message a String value describing the nature of the problem and reason this Exception was thrown.
    */
-  public InvalidTextFormatException(final String message) {
+  public InvalidTextFormatException(String message) {
     super(message);
   }
 
@@ -37,7 +37,7 @@ public class InvalidTextFormatException extends Exception {
    * which is also the reason, or cause, for this Exception to be thrown.
    * @param cause a Throwable object indicating the the reason this InvalidTextFormatException was thrown.
    */
-  public InvalidTextFormatException(final Throwable cause) {
+  public InvalidTextFormatException(Throwable cause) {
     super(cause);
   }
 
@@ -47,7 +47,7 @@ public class InvalidTextFormatException extends Exception {
    * @param message a String value describing the nature of the problem and reason this Exception was thrown.
    * @param cause a Throwable object indicating the the reason this InvalidTextFormatException was thrown.
    */
-  public InvalidTextFormatException(final String message, final Throwable cause) {
+  public InvalidTextFormatException(String message, Throwable cause) {
     super(message, cause);
   }
 

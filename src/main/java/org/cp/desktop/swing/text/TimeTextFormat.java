@@ -41,7 +41,7 @@ public class TimeTextFormat implements TextFormat {
    * @throws InvalidTextFormatException if the text format is not valid input to the
    * text field component.
    */
-  public final String format(Document doc, int offset, String text) throws InvalidTextFormatException {
+  public String format(Document doc, int offset, String text) throws InvalidTextFormatException {
 
     try {
 
@@ -66,7 +66,7 @@ public class TimeTextFormat implements TextFormat {
    * @param timeValue the String value representing the current time value.
    * @return a boolean value indicating if the current String timeValue is a valid time format.
    */
-  protected boolean isValidTimeFormat(final String timeValue) {
+  protected boolean isValidTimeFormat(String timeValue) {
 
     if (timeValue.length() > TIME_FORMAT.length()) {
       return false;
@@ -95,7 +95,7 @@ public class TimeTextFormat implements TextFormat {
    * @param value the value being inserted into the document of the text component.
    * @return the modified value with time formatting imposed.
    */
-  private String mutate(final int offset, final String value) {
+  private String mutate(int offset, String value) {
 
     String valueDigits = Strings.getDigits(value);
 

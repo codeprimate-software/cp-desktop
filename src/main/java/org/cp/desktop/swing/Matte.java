@@ -27,6 +27,7 @@ import javax.swing.JComponent;
 public class Matte extends JComponent {
 
   private static final Color TILE_COLOR = new Color(204, 204, 204);
+
   private static final Dimension TILE_SIZE = new Dimension(5, 5);
 
   // offscreen image buffer used for double buffering

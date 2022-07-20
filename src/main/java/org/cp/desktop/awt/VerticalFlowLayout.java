@@ -24,8 +24,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Logger;
 
-@SuppressWarnings("unused")
-public final class VerticalFlowLayout implements LayoutManager, Serializable {
+public class VerticalFlowLayout implements LayoutManager, Serializable {
 
   public static final int BOTTOM = 0;
   public static final int MIDDLE = 1;
@@ -54,7 +53,7 @@ public final class VerticalFlowLayout implements LayoutManager, Serializable {
    * horizontal gap and vertical gap.
    * @param alignment the alignment of the components in the container, TOP, MIDDLE and BOTTOM.
    */
-  public VerticalFlowLayout(final int alignment) {
+  public VerticalFlowLayout(int alignment) {
     this(alignment, DEFAULT_HORIZONTAL_GAP, DEFAULT_VERTICAL_GAP);
   }
 
@@ -64,7 +63,7 @@ public final class VerticalFlowLayout implements LayoutManager, Serializable {
    * @param horizontalGap the horizontal space between components layed out with this LayoutManager.
    * @param verticalGap the vertical space between components layed out with this LayoutManager.
    */
-  public VerticalFlowLayout(final int horizontalGap, final int verticalGap) {
+  public VerticalFlowLayout(int horizontalGap, int verticalGap) {
     this(DEFAULT_ALIGNMENT, horizontalGap, verticalGap);
   }
 
@@ -75,7 +74,7 @@ public final class VerticalFlowLayout implements LayoutManager, Serializable {
    * @param horizontalGap the horizontal space between components layed out with this LayoutManager.
    * @param verticalGap the vertical space between components layed out with this LayoutManager.
    */
-  public VerticalFlowLayout(final int alignment, final int horizontalGap, final int verticalGap) {
+  public VerticalFlowLayout(int alignment, int horizontalGap, int verticalGap) {
 
     setAlignment(alignment);
     setHorizontalGap(horizontalGap);
@@ -273,7 +272,7 @@ public final class VerticalFlowLayout implements LayoutManager, Serializable {
   /**
    * A separate class to specify the layout of a column in the vertical layout of the parent Container.
    */
-  private final class ColumnLayout {
+  private class ColumnLayout {
 
     private final int columnPosition;
     private int height;
@@ -370,7 +369,7 @@ public final class VerticalFlowLayout implements LayoutManager, Serializable {
    * The MinimumComponentSizeDeterminator class determines the minimum acceptable size of a Component in a
    * Container.
    */
-  private static final class MinimumComponentSizeDeterminator implements IComponentSizeDeterminator {
+  private static class MinimumComponentSizeDeterminator implements IComponentSizeDeterminator {
 
     static final MinimumComponentSizeDeterminator INSTANCE = new MinimumComponentSizeDeterminator();
 
@@ -383,7 +382,7 @@ public final class VerticalFlowLayout implements LayoutManager, Serializable {
    * The PreferredComponentSizeDeterminator class determines the preferred size of a Component in a
    * Container.
    */
-  private static final class PreferredComponentSizeDeterminator implements IComponentSizeDeterminator {
+  private static class PreferredComponentSizeDeterminator implements IComponentSizeDeterminator {
 
     static final PreferredComponentSizeDeterminator INSTANCE = new PreferredComponentSizeDeterminator();
 

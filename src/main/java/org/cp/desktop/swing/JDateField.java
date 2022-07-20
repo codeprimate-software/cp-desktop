@@ -219,7 +219,7 @@ public class JDateField extends JTextField implements PropertyChangeListener {
    * of the date value and calling setText.
    * @param date is the specified Date value used to set the contents of this date input field component.
    */
-  public void setDate(final Date date) {
+  public void setDate(Date date) {
     getModel().setDate(date);
   }
 
@@ -247,7 +247,7 @@ public class JDateField extends JTextField implements PropertyChangeListener {
    * MM/dd/yyyy.
    * @param text a String value representing the date to set in this date field component.
    */
-  public void setText(final String text) {
+  public void setText(String text) {
 
     try {
       getModel().setDate(text != null ? DATE_FORMAT.parse(text) : null);
@@ -262,7 +262,7 @@ public class JDateField extends JTextField implements PropertyChangeListener {
    * The DateDocument class is used by the JDateField component to format the JTextField component as a
    * date input field with forwarded slashes separating the month, day, and year.
    */
-  private final class DateDocument extends PlainDocument {
+  private class DateDocument extends PlainDocument {
 
     private static final char DATE_SEPARATOR = '/';
 
@@ -326,7 +326,7 @@ public class JDateField extends JTextField implements PropertyChangeListener {
   /**
    * This class represents the various fields of a Date (or Calendar object), such as Month, Day, Year, etc.
    */
-  private static final class DateField {
+  private static class DateField {
 
     private static final String DATE_FIELD_TO_STRING =
       "{ @type %s, calendarConstant = %s, description = %s, selectionEnd = %s, selectionStart = %s }";
@@ -499,13 +499,14 @@ public class JDateField extends JTextField implements PropertyChangeListener {
    * The DateFieldKeyListener class is used by the JDateField component to track LEFT, RIGHT, UP, AND DOWN arrow keyboard
    * key events.
    */
-  private final class DateFieldKeyListener extends KeyAdapter {
+  private class DateFieldKeyListener extends KeyAdapter {
 
     /**
      * Processes the key pressed event.
      * @param event the KeyEvent object representing the key pressed event.
      */
-    public void keyPressed(final KeyEvent event) {
+    public void keyPressed(KeyEvent event) {
+
       switch (event.getKeyCode()) {
         case KeyEvent.VK_BACK_SPACE:
         case KeyEvent.VK_DELETE:
@@ -551,7 +552,7 @@ public class JDateField extends JTextField implements PropertyChangeListener {
      * functioning of the JDateField component.
      * @param event the KeyEvent object representing the key typed event.
      */
-    public void keyTyped(final KeyEvent event) {
+    public void keyTyped(KeyEvent event) {
       event.consume();
     }
   }
@@ -634,7 +635,7 @@ public class JDateField extends JTextField implements PropertyChangeListener {
    * The default SelectionModel for instances of the JDateField component.  This SelectionModel highlights the
    * selected date field.
    */
-  private final class DateFieldSelectionModel implements PropertyChangeListener, SelectionModel {
+  private class DateFieldSelectionModel implements PropertyChangeListener, SelectionModel {
 
     private final DateField DAY = new DateField("day", Calendar.DAY_OF_MONTH, 3, 5);
     private final DateField MONTH = new DateField("month", Calendar.MONTH, 0, 2);

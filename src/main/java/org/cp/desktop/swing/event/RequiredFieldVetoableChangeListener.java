@@ -14,7 +14,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyVetoException;
 import java.util.Objects;
 
-public final class RequiredFieldVetoableChangeListener extends AbstractVetoableChangeListener {
+public class RequiredFieldVetoableChangeListener extends AbstractVetoableChangeListener {
 
   public static final RequiredFieldVetoableChangeListener INSTANCE = new RequiredFieldVetoableChangeListener();
 

@@ -768,7 +768,7 @@ public class BasicCalendarUI extends CalendarUI {
       return this.triggered;
     }
 
-    public void setTriggered(final boolean triggered) {
+    public void setTriggered(boolean triggered) {
       processChange("triggered", isTriggered(), triggered);
     }
 
@@ -849,7 +849,7 @@ public class BasicCalendarUI extends CalendarUI {
     private Icon pressedIcon;
     private Icon rolloverIcon;
 
-    public AbstractButton(final Action action) {
+    public AbstractButton(Action action) {
       setAction(action);
     }
 
@@ -857,7 +857,7 @@ public class BasicCalendarUI extends CalendarUI {
       return icon;
     }
 
-    public final void setIcon(final Icon icon) {
+    public final void setIcon(Icon icon) {
       this.icon = icon;
     }
 
@@ -865,7 +865,7 @@ public class BasicCalendarUI extends CalendarUI {
       return pressedIcon;
     }
 
-    public final void setPressedIcon(final Icon pressedIcon) {
+    public final void setPressedIcon(Icon pressedIcon) {
       this.pressedIcon = pressedIcon;
     }
 
@@ -873,7 +873,7 @@ public class BasicCalendarUI extends CalendarUI {
       return rolloverIcon;
     }
 
-    public final void setRolloverIcon(final Icon rolloverIcon) {
+    public final void setRolloverIcon(Icon rolloverIcon) {
       this.rolloverIcon = rolloverIcon;
     }
 

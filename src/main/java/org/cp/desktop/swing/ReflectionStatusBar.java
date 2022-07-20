@@ -27,7 +27,7 @@ import javax.swing.BorderFactory;
 
 import org.cp.elements.lang.annotation.NotNull;
 
-public final class ReflectionStatusBar extends AbstractStatusBar {
+public class ReflectionStatusBar extends AbstractStatusBar {
 
   private AbstractStatusBarModel reflectionBar;
 
@@ -180,7 +180,7 @@ public final class ReflectionStatusBar extends AbstractStatusBar {
   /**
    * LeftStatusBarModel class represents the left bar that moves through the status bar UI component.
    */
-  private final class LeftStatusBarModel extends GradientStatusBarModel {
+  private class LeftStatusBarModel extends GradientStatusBarModel {
 
     public LeftStatusBarModel() {
       super(true);
@@ -233,7 +233,7 @@ public final class ReflectionStatusBar extends AbstractStatusBar {
   /**
    * RightStatusBarModel class represents the right bar that moves through the status bar UI component.
    */
-  private final class RightStatusBarModel extends GradientStatusBarModel {
+  private class RightStatusBarModel extends GradientStatusBarModel {
 
     public RightStatusBarModel() {
       super(false);

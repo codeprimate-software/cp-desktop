@@ -25,7 +25,7 @@ import java.beans.PropertyChangeEvent;
 
 import javax.swing.BorderFactory;
 
-public final class JStatusBar extends AbstractTextStatusBar {
+public class JStatusBar extends AbstractTextStatusBar {
 
   private static final String DEFAULT_TEXT = "";
 

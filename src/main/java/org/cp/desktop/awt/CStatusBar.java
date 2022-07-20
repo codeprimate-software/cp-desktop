@@ -31,7 +31,7 @@ import org.cp.desktop.util.Strings;
 import org.cp.elements.lang.ObjectUtils;
 
 @SuppressWarnings("unused")
-public final class CStatusBar extends Canvas {
+public class CStatusBar extends Canvas {
 
   private static final int DEFAULT_BAR_LENGTH = 10;
   private static final int DEFAULT_BAR_SPEED = 90;
@@ -248,15 +248,16 @@ public final class CStatusBar extends Canvas {
     boolean contains = bar.contains(new Point(x + fontMetrics.charWidth(getText().charAt(0)), y));
 
     if (isRunning()) {
-      for (CharacterIterator it = new StringCharacterIterator(
-        getText()); it.current() != CharacterIterator.DONE; it.next()) {
-        final char currentCharacter = it.current();
-        boolean flag = bar.contains(
-          new Point(x + fontMetrics.stringWidth(buffer.toString()) + fontMetrics.charWidth(currentCharacter), y));
+      for (CharacterIterator it = new StringCharacterIterator(getText()); it.current() != CharacterIterator.DONE; it.next()) {
+
+        char currentCharacter = it.current();
+
+        boolean flag = bar.contains(new Point(x + fontMetrics.stringWidth(buffer.toString()) + fontMetrics.charWidth(currentCharacter), y));
+
         if (contains != flag) {
           // build text segment; add to text composition
-          final TextSegment tempTextSegment = new DefaultTextSegment(buffer.toString(), new Point(x, y),
-            (contains ? getTextOverlayColor() : getTextColor()));
+          TextSegment tempTextSegment =
+            new DefaultTextSegment(buffer.toString(), new Point(x, y), (contains ? getTextOverlayColor() : getTextColor()));
 
           previousTextSegment = TextComposition.compose(previousTextSegment, tempTextSegment);
 
@@ -491,7 +492,7 @@ public final class CStatusBar extends Canvas {
    * StatusBarRunner is a Thread that computes the position and movement of the bar within the status bar,
    * affecting the text color variations.
    */
-  private final class StatusBarRunner implements Runnable {
+  private class StatusBarRunner implements Runnable {
 
     /**
      * Initializes the status bar.
@@ -568,7 +569,7 @@ public final class CStatusBar extends Canvas {
   /**
    * TextComposition represents a composition of text segments, which is itself a text segment.
    */
-  private static final class TextComposition implements TextSegment {
+  private static class TextComposition implements TextSegment {
 
     private final TextSegment textSegment0;
     private final TextSegment textSegment1;
@@ -595,7 +596,7 @@ public final class CStatusBar extends Canvas {
   /**
    * DefaultTextSegment is used to represent different portions of the text for this status bar.
    */
-  private static final class DefaultTextSegment implements TextSegment {
+  private static class DefaultTextSegment implements TextSegment {
 
     private final Color textColor;
     private final Point position;

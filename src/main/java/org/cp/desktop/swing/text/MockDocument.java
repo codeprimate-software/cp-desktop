@@ -27,7 +27,7 @@ import javax.swing.text.Segment;
 import org.cp.desktop.util.Strings;
 import org.cp.elements.lang.Assert;
 
-public final class MockDocument implements Document {
+public class MockDocument implements Document {
 
   private String text;
 
@@ -110,7 +110,8 @@ public final class MockDocument implements Document {
     }
   }
 
-  public void remove(final int offset, final int length) throws BadLocationException {
+  public void remove(int offset, int length) throws BadLocationException {
+
     try {
       text = Strings.remove(text, offset, length);
     }
@@ -125,7 +126,9 @@ public final class MockDocument implements Document {
     String replacedText = null;
 
     try {
-      final String temp = text.substring(offset, offset + length);
+
+      String temp = text.substring(offset, offset + length);
+
       remove(offset, length);
       replacedText = temp;
       insertString(offset, value, attrSet);
@@ -157,7 +160,7 @@ public final class MockDocument implements Document {
     return this.text;
   }
 
-  private static final class DefaultTextFormat implements TextFormat {
+  private static class DefaultTextFormat implements TextFormat {
 
     public static final DefaultTextFormat INSTANCE = new DefaultTextFormat();
 

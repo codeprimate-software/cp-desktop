@@ -27,7 +27,7 @@ import javax.swing.text.PlainDocument;
 import org.cp.desktop.swing.text.InvalidTextFormatException;
 import org.cp.desktop.swing.text.TextFormat;
 
-public final class JFormattedTextField extends JTextField {
+public class JFormattedTextField extends JTextField {
 
   private static final Font DEFAULT_FONT = new Font("Monospaced", Font.PLAIN, 12);
 
@@ -49,7 +49,7 @@ public final class JFormattedTextField extends JTextField {
    * @param textFormat a TextFormat object specifying the format and validation scheme used when inserting text
    * into this formatted text field.
    */
-  public JFormattedTextField(final TextFormat textFormat) {
+  public JFormattedTextField(TextFormat textFormat) {
     setTextFormat(textFormat);
     setFont(DEFAULT_FONT);
   }
@@ -88,11 +88,11 @@ public final class JFormattedTextField extends JTextField {
    * The DefaultTextFormat class requires no special format and performs no validation on the text input.  The class
    * is merely an adapter for the TextFormat interface.
    */
-  private static final class DefaultTextFormat implements TextFormat {
+  private static class DefaultTextFormat implements TextFormat {
 
     private static final DefaultTextFormat INSTANCE = new DefaultTextFormat();
 
-    public String format(final Document doc, final int offset, final String text) throws InvalidTextFormatException {
+    public String format(Document doc, int offset, String text) throws InvalidTextFormatException {
       return text;
     }
   }
@@ -101,7 +101,7 @@ public final class JFormattedTextField extends JTextField {
    * The SchemaDocument class is used by the JFormattedTextField component class to model text input via formatting
    * and validation.
    */
-  public final class SchemaDocument extends PlainDocument {
+  public class SchemaDocument extends PlainDocument {
 
     private String replacedText = null;
 
@@ -130,7 +130,7 @@ public final class JFormattedTextField extends JTextField {
       this.replacedText = replacedText;
     }
 
-    public void insertString(final int offset, final String value, final AttributeSet attrSet)
+    public void insertString(int offset, String value, AttributeSet attrSet)
         throws BadLocationException {
       try {
         super.insertString(offset, textFormat.format(this, offset, value), attrSet);
@@ -143,8 +143,7 @@ public final class JFormattedTextField extends JTextField {
       }
     }
 
-    public void replace(final int offset, final int length, final String value, final AttributeSet attrs)
-        throws BadLocationException {
+    public void replace(int offset, int length, String value, AttributeSet attrs) throws BadLocationException {
       setReplacedText(getText(offset, length));
       super.replace(offset, length, value, attrs);
     }

@@ -68,7 +68,7 @@ public class PhoneNumberTextFormat implements TextFormat {
    * @param phoneNumberValue the String value representing the current phone number value.
    * @return a boolean value indicating if the current String phoneNumberValue is a valid phone number format.
    */
-  protected boolean isValidPhoneNumberFormat(final String phoneNumberValue) {
+  protected boolean isValidPhoneNumberFormat(String phoneNumberValue) {
 
     if (phoneNumberValue.length() > PHONE_NUMBER_FORMAT.length()) {
       return false;

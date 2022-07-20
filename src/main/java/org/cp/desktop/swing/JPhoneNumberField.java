@@ -32,7 +32,7 @@ import javax.swing.text.PlainDocument;
 
 import org.cp.desktop.util.Strings;
 
-public final class JPhoneNumberField extends JTextField {
+public class JPhoneNumberField extends JTextField {
 
   private static final int DASH_POSITION = 8;
   private static final int END_POSITION = 13;
@@ -50,7 +50,7 @@ public final class JPhoneNumberField extends JTextField {
   private boolean typeOver = false;
 
   /**
-   * Creates an instance of the JPhoneNumberField component class to represent phone numbers in a text field.
+   * Constructs a new instance of {@link JPhoneNumberField} used to enter phone numbers in a text field.
    */
   public JPhoneNumberField() {
 
@@ -203,7 +203,7 @@ public final class JPhoneNumberField extends JTextField {
    * The PhoneNumberDocument class is the default document used by the JPhoneNumberField component class to
    * represent phone numbers in a standard JTextField component.
    */
-  private final class PhoneNumberDocument extends PlainDocument {
+  private class PhoneNumberDocument extends PlainDocument {
 
     private static final char DASH_CHAR = '-';
     private static final char LEFT_PAREN_CHAR = '(';
@@ -228,7 +228,7 @@ public final class JPhoneNumberField extends JTextField {
      * Sets the replaced text upon removal for a replace operation.
      * @param replaceText the text that will be removed and replaced during the replace operation.
      */
-    private void setReplaceText(final String replaceText) {
+    private void setReplaceText(String replaceText) {
       this.replaceText = replaceText;
     }
 
@@ -244,7 +244,7 @@ public final class JPhoneNumberField extends JTextField {
      * Sets the replacing property during a replace operation.
      * @param replacing a boolean value indicating if a replace operation has occurred.
      */
-    private void setReplacing(final boolean replacing) {
+    private void setReplacing(boolean replacing) {
       this.replacing = replacing;
     }
 
@@ -286,10 +286,9 @@ public final class JPhoneNumberField extends JTextField {
      * @param attrSet the AttributeSet used to markup the value.
      * @throws BadLocationException if the insert position for the value within this document is not valid.
      */
-    public void insertString(final int offset, String value, final AttributeSet attrSet)
-        throws BadLocationException {
-      try {
+    public void insertString(int offset, String value, AttributeSet attrSet) throws BadLocationException {
 
+      try {
         // preformatting: remove the left paren if the value contains one
         if (!DEFAULT_PHONE_NUMBER.equals(value) && value.startsWith(String.valueOf(LEFT_PAREN_CHAR))) {
           value = value.substring(1);
@@ -324,7 +323,7 @@ public final class JPhoneNumberField extends JTextField {
      * phone numbers.
      * @param value String content containing full/partial phone number information to validate.
      */
-    public boolean isValidPhoneNumber(final int offset, final String value) throws BadLocationException {
+    public boolean isValidPhoneNumber(int offset, String value) throws BadLocationException {
 
       // if the value is equal to the default phone number, the value is valid
       if (DEFAULT_PHONE_NUMBER.equals(value)) {
@@ -376,7 +375,7 @@ public final class JPhoneNumberField extends JTextField {
      * @param offset the offset from the begining >= 0
      * @param length the number of characters to remove >= 0
      */
-    public void remove(int offset, final int length) throws BadLocationException {
+    public void remove(int offset, int length) throws BadLocationException {
 
       // do not remove the phone number formatting
       int adjustedOffset = offset;
@@ -412,8 +411,7 @@ public final class JPhoneNumberField extends JTextField {
      * @param attrs the cosmetic attributes for the text.
      * @throws BadLocationException
      */
-    public void replace(final int offset, final int length, final String text, final AttributeSet attrs)
-        throws BadLocationException {
+    public void replace(int offset, int length, String text, AttributeSet attrs) throws BadLocationException {
       setReplacing(true);
       super.replace(offset, length, text, attrs);
     }
@@ -426,7 +424,7 @@ public final class JPhoneNumberField extends JTextField {
      * @throws BadLocationException if the given delete position is not a valid position
      * within the document.
      */
-    private void shiftLeft(final int offset) throws BadLocationException {
+    private void shiftLeft(int offset) throws BadLocationException {
 
       String currentPhoneNumber = this.getText(0, getLength());
 
@@ -453,7 +451,7 @@ public final class JPhoneNumberField extends JTextField {
      * @throws BadLocationException if the given insert position is not a valid position
      * within the document.
      */
-    private String shiftRight(final int offset, String value) throws BadLocationException {
+    private String shiftRight(int offset, String value) throws BadLocationException {
 
       value = format(offset, value);
 
@@ -483,31 +481,33 @@ public final class JPhoneNumberField extends JTextField {
    * The PhoneNumberFieldKeyListener class is used by the JPhoneNumberField component to track key events
    * targeted at editing and traversing the phone number field.
    */
-  private final class PhoneNumberFieldKeyListener extends KeyAdapter {
+  private class PhoneNumberFieldKeyListener extends KeyAdapter {
 
-    public void keyPressed(KeyEvent e) {
-      final int dot = getCaret().getDot();
-      switch (e.getKeyCode()) {
+    public void keyPressed(KeyEvent event) {
+
+      int dot = getCaret().getDot();
+
+      switch (event.getKeyCode()) {
         case KeyEvent.VK_A:
-          if (e.isControlDown()) {
+          if (event.isControlDown()) {
             setSelectionStart(1);
             setSelectionEnd(END_POSITION);
-            e.consume();
+            event.consume();
           }
           break;
         case KeyEvent.VK_END:
-          if (!e.isShiftDown()) {
+          if (!event.isShiftDown()) {
             setCaret(END_POSITION);
-            e.consume();
+            event.consume();
           }
           else {
             if (isTypeOver()) {
-              e.consume();
+              event.consume();
             }
           }
           break;
         case KeyEvent.VK_HOME:
-          if (!e.isShiftDown()) {
+          if (!event.isShiftDown()) {
             setCaret(1);
           }
           else {
@@ -516,7 +516,7 @@ public final class JPhoneNumberField extends JTextField {
               setSelectionEnd(dot);
             }
           }
-          e.consume();
+          event.consume();
           break;
         case KeyEvent.VK_INSERT:
           setTypeOver(!isTypeOver());
@@ -526,15 +526,15 @@ public final class JPhoneNumberField extends JTextField {
           else {
             setCaret(dot - 1);
           }
-          e.consume();
+          event.consume();
           break;
         case KeyEvent.VK_LEFT:
           setCaretLeft(dot);
-          e.consume();
+          event.consume();
           break;
         case KeyEvent.VK_RIGHT:
           setCaretRight(dot);
-          e.consume();
+          event.consume();
           break;
         default:
       }
@@ -545,9 +545,9 @@ public final class JPhoneNumberField extends JTextField {
    * The PhoneNumberFieldMouseListener is used to handle mouse events generated by the user working with the mouse
    * in the phone number field.
    */
-  private final class PhoneNumberFieldMouseListener extends MouseInputAdapter {
+  private class PhoneNumberFieldMouseListener extends MouseInputAdapter {
 
-    private void handleEvent(MouseEvent event) {
+    private void handleEvent(@SuppressWarnings("unused") MouseEvent event) {
 
       if (getSelectionStart() != getSelectionEnd()) {
         if (getSelectionStart() == 0) {

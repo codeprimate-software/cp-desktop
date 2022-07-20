@@ -82,7 +82,7 @@ public class NumberOutOfBoundsVetoableChangeListener<N extends Number> extends A
    * @param value the numeric value in question.
    * @return a boolean value if the specified numeric value satisfies the constraints of this listener.
    */
-  public boolean accept(final N value) {
+  public boolean accept(N value) {
     return Objects.isNull(value) || (value.doubleValue() >= getMinValue().doubleValue()
       && value.doubleValue() <= getMaxValue().doubleValue());
   }

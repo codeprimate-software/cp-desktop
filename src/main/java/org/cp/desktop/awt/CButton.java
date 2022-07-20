@@ -18,7 +18,7 @@ import java.awt.Point;
 import java.util.Objects;
 
 @SuppressWarnings("unused")
-public final class CButton extends Button {
+public class CButton extends Button {
 
   private static final int PAD_X = 4;
   private static final int PAD_Y = 4;
@@ -94,7 +94,7 @@ public final class CButton extends Button {
   /**
    * The IconRenderer handles the details of rendering, or painting, the icon image on the UI component.
    */
-  private final class IconRenderer {
+  private class IconRenderer {
 
     private Dimension iconSize;
 

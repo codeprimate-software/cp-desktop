@@ -81,7 +81,7 @@ public class JSsnField extends JTextField {
    * Sets whether the user has pressed the insert key activating the text over write.
    * @param typeOver a boolean value indicating if the user activated text over write by pressing the insert key.
    */
-  public void setTypeOver(final boolean typeOver) {
+  public void setTypeOver(boolean typeOver) {
     this.typeOver = typeOver;
   }
 
@@ -179,7 +179,7 @@ public class JSsnField extends JTextField {
    * The SsnDocument class is the default document used by the JSsnField component to model social security numbers
    * in a standard JTextField component.
    */
-  private final class SsnDocument extends PlainDocument {
+  private class SsnDocument extends PlainDocument {
 
     private static final char DASH_CHARACTER = '-';
     private static final int MAX_NUMBER_OF_SSN_DIGITS = 9;
@@ -201,7 +201,7 @@ public class JSsnField extends JTextField {
      * Sets the replaced text upon removal for a replace operation.
      * @param replaceText the text that will be removed and replaced during the replace operation.
      */
-    private void setReplaceText(final String replaceText) {
+    private void setReplaceText(String replaceText) {
       this.replaceText = replaceText;
     }
 
@@ -217,7 +217,7 @@ public class JSsnField extends JTextField {
      * Sets the replacing property during a replace operation.
      * @param replacing a boolean value indicating if a replace operation has occurred.
      */
-    private void setReplacing(final boolean replacing) {
+    private void setReplacing(boolean replacing) {
       this.replacing = replacing;
     }
 
@@ -228,7 +228,7 @@ public class JSsnField extends JTextField {
      * @param value the value to format.
      * @return the formatted value.
      */
-    private String format(final int offset, final String value) {
+    private String format(int offset, String value) {
 
       String valueDigits = Strings.getDigits(value);
 

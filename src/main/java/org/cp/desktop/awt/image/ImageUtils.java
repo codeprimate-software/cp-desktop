@@ -113,7 +113,7 @@ public abstract class ImageUtils {
    * containing the down arrow.
    * @return a java.awt.Image object of the down arrow.
    */
-  public static Image getDownArrowImage(final Dimension boundingBox) {
+  public static Image getDownArrowImage(Dimension boundingBox) {
 
     validateBoundingBox(boundingBox);
 

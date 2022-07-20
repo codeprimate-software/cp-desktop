@@ -27,7 +27,7 @@ import javax.swing.JLabel;
 import org.cp.desktop.awt.model.AboutInfo;
 import org.cp.desktop.awt.support.WebBrowser;
 
-public final class JAboutDialog extends JDialog {
+public class JAboutDialog extends JDialog {
 
   private static final boolean DEFAULT_MODAL = true;
   private static final boolean DEFAULT_RESIZABLE = false;
