@@ -22,68 +22,98 @@ import javax.swing.Icon;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
-import org.cp.elements.lang.Assert;
+import org.cp.elements.lang.ObjectUtils;
+import org.cp.elements.lang.annotation.NotNull;
+import org.cp.elements.lang.annotation.Nullable;
 
+/**
+ * Abstract base class for all {@link JDesktopPane} {@link AbstractAction Actions}.
+ *
+ * @author John Blum
+ * @see javax.swing.AbstractAction
+ * @see javax.swing.JDesktopPane
+ * @see javax.swing.JInternalFrame
+ */
 public abstract class AbstractDesktopAction extends AbstractAction {
 
   private JDesktopPane desktop;
 
   /**
-   * Creates an instance of the AbtractDesktopAction class initilized with the specified desktop.
-   * @param desktop the JDesktopPane object acted upon on by this Action class.
+   * Constructs a new instance of {@link AbstractDesktopAction} initialized with the given,
+   * required {@link JDesktopPane}.
+   *
+   * @param desktop {@link JDesktopPane} acted upon on by this {@link AbstractAction}; must not be {@literal null}.
+   * @throws IllegalArgumentException if {@link JDesktopPane} is {@literal null}.
+   * @see javax.swing.JDesktopPane
    */
-  public AbstractDesktopAction(JDesktopPane desktop) {
+  public AbstractDesktopAction(@NotNull JDesktopPane desktop) {
     setDesktop(desktop);
   }
 
   /**
-   * Creates an instance of the AbtractDesktopAction class initilized with the specified desktop and name.
-   * @param desktop the JDesktopPane object acted upon by this Action class.
-   * @param name a String value naming the Action and used to set the button or menu item label.
+   * Constructs a new instance of {@link AbstractDesktopAction} initialized with the given,
+   * required {@link JDesktopPane}.
+   *
+   * @param desktop {@link JDesktopPane} acted upon on by this {@link AbstractAction}; must not be {@literal null}.
+   * @param name {@link String} containing the {@literal name} given to this {@link AbstractAction}.
+   * @throws IllegalArgumentException if {@link JDesktopPane} is {@literal null}.
+   * @see javax.swing.JDesktopPane
    */
-  public AbstractDesktopAction(JDesktopPane desktop, String name) {
+  public AbstractDesktopAction(@NotNull JDesktopPane desktop, @Nullable String name) {
     super(name);
     setDesktop(desktop);
   }
 
   /**
-   * Creates an instance of the AbtractDesktopAction class initilized with the specified desktop, name and icon.
-   * @param desktop the JDesktopPane object acted upon by this Action class.
-   * @param name a String value naming the Action and used to set the button or menu item label.
-   * @param icon an Icon object specifying the button or menu item icon representing this Action.
+   * Constructs a new instance of {@link AbstractDesktopAction} initialized with the given,
+   * required {@link JDesktopPane}.
+   *
+   * @param desktop {@link JDesktopPane} acted upon on by this {@link AbstractAction}; must not be {@literal null}.
+   * @param name {@link String} containing the {@literal name} given to this {@link AbstractAction}.
+   * @param icon {@link Icon} representing this {@link AbstractAction} in the GUI, such as a menu item in a menu
+   * or image on a button.
+   * @throws IllegalArgumentException if {@link JDesktopPane} is {@literal null}.
+   * @see javax.swing.JDesktopPane
    */
-  public AbstractDesktopAction(JDesktopPane desktop, String name, Icon icon) {
+  public AbstractDesktopAction(@NotNull JDesktopPane desktop, @Nullable String name, @Nullable Icon icon) {
     super(name, icon);
     setDesktop(desktop);
   }
 
   /**
-   * Returns the desktop associated with this Action.
-   * @return an instance of the JDesktopPane component for which this Action object acts upon.
+   * Return a reference to the {@link JDesktopPane} associated with this {@link AbstractAction}.
+   *
+   * @return a reference to the {@link JDesktopPane} associated with this {@link AbstractAction}.
+   * @see javax.swing.JDesktopPane
    */
-  public JDesktopPane getDesktop() {
+  public @NotNull JDesktopPane getDesktop() {
     return this.desktop;
   }
 
   /**
-   * Sets the desktop component object associated with this Action.
-   * @param desktop the JDesktopPane instance associated with this Action.
+   * Return a reference to the {@link JDesktopPane} associated with this {@link AbstractAction}.
+   *
+   * @param desktop reference to the {@link JDesktopPane} associated with this {@link AbstractAction};
+   * must not be {@literal null}.
+   * @throws IllegalArgumentException if {@link JDesktopPane} is {@literal null}.
+   * @see javax.swing.JDesktopPane
    */
-  private void setDesktop(JDesktopPane desktop) {
-    Assert.notNull(desktop, "Desktop is required");
-    this.desktop = desktop;
+  protected void setDesktop(@NotNull JDesktopPane desktop) {
+    this.desktop = ObjectUtils.requireObject(desktop, "Desktop is required");
   }
 
   /**
-   * Restores the internal frame from an iconfied or maximized state.
-   * @param frame the internal frame to restore.
-   * @throws PropertyVetoException if the act of deiconifying or minimizing the internal frame is vetoed.
+   * Restores the {@link JInternalFrame} from an iconfied or maximized state.
+   *
+   * @param frame {@link JInternalFrame} to restore.
+   * @throws PropertyVetoException if the act of de-iconifying or minimizing the {@link JInternalFrame} is vetoed.
    */
-  protected void restoreFrame(JInternalFrame frame) throws PropertyVetoException {
+  protected void restoreFrame(@NotNull JInternalFrame frame) throws PropertyVetoException {
 
     if (frame.isIcon()) {
       frame.setIcon(false);
     }
+
     if (frame.isMaximum()) {
       frame.setMaximum(false);
     }
