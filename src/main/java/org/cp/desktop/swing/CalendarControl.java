@@ -53,7 +53,7 @@ public class CalendarControl extends JPanel {
   private JDateField dateField;
 
   /**
-   * Constructs a new instance of {@link CalendarControl}.
+   * Constructs a new {@link CalendarControl}.
    */
   public CalendarControl() {
     this.calendarModel = new DefaultCalendarModel();

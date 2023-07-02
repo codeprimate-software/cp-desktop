@@ -39,7 +39,7 @@ public abstract class ImageUtils {
 
   /**
    * Default constructor used by subclasses to extend the functionality of the {@link ImageUtils} class.
-   *
+   * <p>
    * {@link ImageUtils} is a stateless utility class therefore instances need not be created.
    */
   protected ImageUtils() { }

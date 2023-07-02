@@ -33,8 +33,7 @@ public class BoundedAreaGrayFilter extends RGBImageFilter {
   private Shape boundedArea;
 
   /**
-   * Constructs a new instance of {@link BoundedAreaGrayFilter} used to gray out within or outside of a polygon
-   * shaped area.
+   * Constructs a new {@link BoundedAreaGrayFilter} used to gray out within or outside a polygon shaped area.
    *
    * @param boundedArea {@link Shape} defining the area that will contain color or be grayed out.
    * @see java.awt.Shape
@@ -44,8 +43,7 @@ public class BoundedAreaGrayFilter extends RGBImageFilter {
   }
 
   /**
-   * Constructs a new instance of {@link BoundedAreaGrayFilter} used to gray out within or outside of a polygon
-   * shaped area.
+   * Constructs a new {@link BoundedAreaGrayFilter} used to gray out within or outside a polygon shaped area.
    *
    * @param boundedArea {@link Shape} defining the area that will contain color or be grayed out.
    * @param fillColored boolean value indicating whether the area inside the polygon is to be colored;

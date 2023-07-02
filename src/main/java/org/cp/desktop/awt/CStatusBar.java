@@ -69,14 +69,14 @@ public class CStatusBar extends Canvas {
   private String text = "";
 
   /**
-   * Constructs a new instance of the {@link CStatusBar} GUI component with no {@link String message}.
+   * Constructs a new {@link CStatusBar} UI component with no {@link String message}.
    */
   public CStatusBar() {
     this(null);
   }
 
   /**
-   * Constructs a new instance of the {@link CStatusBar} GUI component initialized with the given, initial
+   * Constructs a new {@link CStatusBar} UI component initialized with the given, initial
    * {@link String message} along with the default {@link Color} and {@link Font}.
    *
    * @param text {@link String} containing the {@literal message} to display in the status bar.

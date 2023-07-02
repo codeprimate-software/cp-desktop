@@ -46,10 +46,9 @@ public class CAboutDialog extends Dialog {
   private static final Font BOLD_ARIAL_12 = new Font("Arial", Font.BOLD, 12);
 
   /**
-   * Constructs a new instance of {@link CAboutDialog} initialized with information about the company
-   * and product and the frame from which this dialog was derived.  A reference to a browser object
-   * responsible for directing the user to the company website, specified by the URL, is also passed
-   * to the constructor.
+   * Constructs a new {@link CAboutDialog} initialized with information about the company and product and the frame
+   * from which this dialog was derived.  A reference to a browser object responsible for directing the user to
+   * the company website, specified by the URL, is also passed to the constructor.
    *
    * @param owner is a reference to the Frame of the application that opened this dialog.
    * @param aboutInfo is an AbstractAboutInfo object containing informatiou about the name of the product,

@@ -28,12 +28,12 @@ public class CButton extends Button {
   private Image icon;
 
   /**
-   * Constructs a new instance of the {@link CButton} UI component.
+   * Constructs a new {@link CButton} UI component.
    */
   public CButton() { }
 
   /**
-   * Constructs a new instance of the {@link CButton} UI component initialized with the given {@link String label}.
+   * Constructs a new {@link CButton} UI component initialized with the given {@link String label}.
    *
    * @param label {@link String} containing the {@literal text} used to label this button.
    */
@@ -42,7 +42,7 @@ public class CButton extends Button {
   }
 
   /**
-   * Constructs a new instance of the {@link CButton} UI component initialized with the given {@link Image icon}.
+   * Constructs a new {@link CButton} UI component initialized with the given {@link Image icon}.
    *
    * @param icon {@link Image} used as the icon to draw on the face of this button.
    * @see java.awt.Image

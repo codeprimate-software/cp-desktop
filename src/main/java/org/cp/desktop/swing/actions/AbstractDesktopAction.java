@@ -39,8 +39,7 @@ public abstract class AbstractDesktopAction extends AbstractAction {
   private JDesktopPane desktop;
 
   /**
-   * Constructs a new instance of {@link AbstractDesktopAction} initialized with the given,
-   * required {@link JDesktopPane}.
+   * Constructs a new {@link AbstractDesktopAction} initialized with the given, required {@link JDesktopPane}.
    *
    * @param desktop {@link JDesktopPane} acted upon on by this {@link AbstractAction}; must not be {@literal null}.
    * @throws IllegalArgumentException if {@link JDesktopPane} is {@literal null}.
@@ -51,8 +50,7 @@ public abstract class AbstractDesktopAction extends AbstractAction {
   }
 
   /**
-   * Constructs a new instance of {@link AbstractDesktopAction} initialized with the given,
-   * required {@link JDesktopPane}.
+   * Constructs a new {@link AbstractDesktopAction} initialized with the given, required {@link JDesktopPane}.
    *
    * @param desktop {@link JDesktopPane} acted upon on by this {@link AbstractAction}; must not be {@literal null}.
    * @param name {@link String} containing the {@literal name} given to this {@link AbstractAction}.
@@ -65,8 +63,7 @@ public abstract class AbstractDesktopAction extends AbstractAction {
   }
 
   /**
-   * Constructs a new instance of {@link AbstractDesktopAction} initialized with the given,
-   * required {@link JDesktopPane}.
+   * Constructs a new {@link AbstractDesktopAction} initialized with the given, required {@link JDesktopPane}.
    *
    * @param desktop {@link JDesktopPane} acted upon on by this {@link AbstractAction}; must not be {@literal null}.
    * @param name {@link String} containing the {@literal name} given to this {@link AbstractAction}.

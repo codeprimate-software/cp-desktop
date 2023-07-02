@@ -56,8 +56,8 @@ public abstract class AbstractTextStatusBar extends AbstractStatusBar {
   private String text;
 
   /**
-   * Constructs a new instance of the {@link AbstractTextStatusBar} user interface (UI) component.
-   *
+   * Constructs a new {@link AbstractTextStatusBar} user interface (UI) component.
+   * <p>
    * This constructor also registers the {@link TextPropertyChangeListener} as an event handler used to listen for
    * text change events on this text component in order to update the view with the new text.
    */
@@ -84,7 +84,7 @@ public abstract class AbstractTextStatusBar extends AbstractStatusBar {
 
   /**
    * Factory method used to construct a new {@link TextSegment {, representing the specified portion of text.
-   *
+   * <p>
    * @param text the String value denoting the portion of text the segment will represent.
    * @param origin a Point value specifying the location of the text in the given context.
    * @param textColor the color of the specified text.

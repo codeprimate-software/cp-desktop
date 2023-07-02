@@ -61,7 +61,7 @@ public class DefaultDateModel extends AbstractBean<Integer, User<Integer>, Strin
 
   /**
    * Determines whether the given day is valid for the current month and the current year determined by {@link Calendar}.
-   *
+   * <p>
    * February, non-leap year: 1 - 28 days
    * February in leap year: 1 - 29 days
    * January, March, May, July, August, October, December: 1 - 31 days.
@@ -80,7 +80,7 @@ public class DefaultDateModel extends AbstractBean<Integer, User<Integer>, Strin
 
   /**
    * Determines whether the given day and month is valid for the current year determined by {@link Calendar}.
-   *
+   * <p>
    * February, non-leap year: 1 - 28 days
    * February in leap year: 1 - 29 days
    * January, March, May, July, August, October, December: 1 - 31 days.
@@ -148,10 +148,10 @@ public class DefaultDateModel extends AbstractBean<Integer, User<Integer>, Strin
 
   /**
    * Normalizes the month represented as an {@link Integer}.
-   *
+   * <p>
    * Shifts the month value by 1 if the month value is zero based. Note that {@link Calendar constants
    * for {@literal January} through {@literal December} are zero-based.
-   *
+   * <p>
    * @param month {@link Integer} for the month.
    * @return a normalized {@link Integer}} for the month.
    */
@@ -165,7 +165,7 @@ public class DefaultDateModel extends AbstractBean<Integer, User<Integer>, Strin
   private Calendar calendar;
 
   /**
-   * Constructs a new instance of {@link DefaultDateModel} initialized with the given, required {@link Calendar}.
+   * Constructs a new {@link DefaultDateModel} initialized with the given, required {@link Calendar}.
    *
    * @param calendar {@link Calendar} used to initialize this {@link DefaultDateModel}; must not be {@literal null}.
    * @see java.util.Calendar
@@ -176,7 +176,7 @@ public class DefaultDateModel extends AbstractBean<Integer, User<Integer>, Strin
   }
 
   /**
-   * Constructs a new instance of {@link DefaultDateModel} initialized with the given, required {@link Date}.
+   * Constructs a new {@link DefaultDateModel} initialized with the given, required {@link Date}.
    *
    * @param date {@link Date} used to initialize this {@link DefaultDateModel}; must not be {@literal null}.
    * @see java.util.Date

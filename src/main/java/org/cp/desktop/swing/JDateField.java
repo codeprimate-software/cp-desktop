@@ -61,11 +61,11 @@ public class JDateField extends JTextField implements PropertyChangeListener {
   private static final Toolkit TOOLKIT = Toolkit.getDefaultToolkit();
 
   /**
-   * Factory method used to construct a new instance of {@link JDateField} initialized with the given, required
-   * {@link String} representing a date.
+   * Factory method used to construct a new {@link JDateField} initialized with the given, required {@link String}
+   * representing a date.
    *
    * @param value {@link String} containing a date; must not be {@literal null}.
-   * @return a new instance of {@link JDateField} initialized initialized with the given, required {@link String}
+   * @return a new instance of {@link JDateField} initialized with the given, required {@link String}
    * representing a date.
    * @throws IllegalArgumentException if the given {@link String date} is not valid.
    * @see java.lang.String
@@ -85,8 +85,7 @@ public class JDateField extends JTextField implements PropertyChangeListener {
   private SelectionModel selectionModel;
 
   /**
-   * Constructs a new instance of the {@link JDateField} GUI component initialized with
-   * {@link Calendar#getInstance() today's date}.
+   * Constructs a new {@link JDateField} GUI component initialized with {@link Calendar#getInstance() today's date}.
    *
    * @see #JDateField(Calendar)
    */
@@ -95,7 +94,7 @@ public class JDateField extends JTextField implements PropertyChangeListener {
   }
 
   /**
-   * Constructs a new instance of {@link JDateField} initialized with the given {@link Calendar}.
+   * Constructs a new {@link JDateField} initialized with the given {@link Calendar}.
    *
    * @param calendar {@link Calendar} specifying the date and time used to initialize this {@link JDateField}.
    * @see java.util.Calendar
@@ -115,7 +114,7 @@ public class JDateField extends JTextField implements PropertyChangeListener {
   }
 
   /**
-   * Constructs a new instance of {@link JDateField} initialized with the given, required {@link Date}.
+   * Constructs a new {@link JDateField} initialized with the given, required {@link Date}.
    *
    * @param date {@link Date} used to initialize this {@link JDateField}; must not be {@literal null}.
    * @see #JDateField(Calendar)
@@ -126,7 +125,7 @@ public class JDateField extends JTextField implements PropertyChangeListener {
   }
 
   /**
-   * Constructs a new instance of {@link JDateField} initialized with the {@link String} representing a {@literal date}.
+   * Constructs a new {@link JDateField} initialized with the {@link String} representing a {@literal date}.
    *
    * @param dateValue {@link String} containing a representation of a {@literal date}
    * in the format {@literal MM/dd/yyyy} used to initialize this {@link JDateField}.

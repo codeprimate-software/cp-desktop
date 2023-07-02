@@ -50,7 +50,7 @@ public class JPhoneNumberField extends JTextField {
   private boolean typeOver = false;
 
   /**
-   * Constructs a new instance of {@link JPhoneNumberField} used to enter phone numbers in a text field.
+   * Constructs a new {@link JPhoneNumberField} used to enter phone numbers in a text field.
    */
   public JPhoneNumberField() {
 

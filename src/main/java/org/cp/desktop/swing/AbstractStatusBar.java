@@ -62,8 +62,8 @@ public abstract class AbstractStatusBar extends JComponent implements PropertyCh
   private Graphics2D graphicsBuffer;
 
   /**
-   * Constructs a new instance of {@link AbstractStatusBar}.
-   *
+   * Constructs a new {@link AbstractStatusBar}.
+   * <p>
    * Registers a {@link VetoableChangeListener} on the {@link #getBarSpeed() barSpeed} property to constrain the values
    * between {@link #MIN_BAR_SPEED} and {@link #MAX_BAR_SPEED}. Also sets the background {@link Color}
    * to {@link Color#LIGHT_GRAY}.
@@ -243,7 +243,7 @@ public abstract class AbstractStatusBar extends JComponent implements PropertyCh
 
   /**
    * Paints the user interface (UI) of the status bar component.
-   *
+   * <p>
    * This method is meant to be overridden to apply custom paint operations
    * depending upon the status bar implementation.
    *
@@ -320,7 +320,7 @@ public abstract class AbstractStatusBar extends JComponent implements PropertyCh
     private Point origin;
 
     /**
-     * Constructs a new instance of {@link AbstractStatusBarModel}.
+     * Constructs a new {@link AbstractStatusBarModel}.
      *
      * Registers {@literal origin} and {@literal size} as required properties.
      */

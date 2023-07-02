@@ -17,9 +17,9 @@ public abstract class KeyEventUtils {
   /**
    * Determines whether the key pressed by the user was an alphabetic key (such as the letters a..z or A..Z).
    * Note, the isAlphabetic method could have been implemented using the following code...
-   *
+   * <p>
    * <code>return (keyCode >= KeyEvent.VK_A && keyCode <= KeyEvent.VK_Z);</code>
-   *
+   * <p>
    * However, if the implementation of KeyEvent changes in that ascii characters do not have sequential keyCodes,
    * then the implementation above would fail!
    * @param keyCode is a unique integer value representing the keyboard key pressed (key code).
@@ -88,9 +88,9 @@ public abstract class KeyEventUtils {
   /**
    * Determines whether one of the 9 number keys above the letter keys on a standard US keyboard has been pressed
    * by the user. Note, the isNumberKey method could have been implemented using the following code...
-   *
+   * <p>
    * <code>return (keyCode >= KeyEvent.VK_0 && keyCode <= KeyEvent.VK_9);</code>
-   *
+   * <p>
    * However, if the implementation of KeyEvent changes in that numbers do not have sequential keyCodes, then
    * the implementation above would fail!
    * @param keyCode is a unique integer value representing the keyboard key pressed (key code).
@@ -128,9 +128,9 @@ public abstract class KeyEventUtils {
   /**
    * Determines whether one of the number key pad keys have been pressed by the user.
    * Note, the isNumPadKey method could have been implemented using the following code...
-   *
+   * <p>
    * <code>return (keyCode >= KeyEvent.VK_NUMPAD0 && keyCode <= KeyEvent.VK_NUMPAD9);</code>
-   *
+   * <p>
    * However, if the implementation of KeyEvent changes in that numbers do not have sequential keyCodes, then
    * the implementation above would fail!
    * @param keyCode is a unique integer value representing the keyboard key pressed (key code).

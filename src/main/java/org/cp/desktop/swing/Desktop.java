@@ -101,7 +101,7 @@ public interface Desktop {
 
   /**
    * Sets the active internal frame to the next open internal frame in this desktop.
-   *
+   * <p>
    * The internal frame will be made visible and have focus.
    *
    * @see #previous()
@@ -128,7 +128,7 @@ public interface Desktop {
 
   /**
    * Sets the active internal frame to the previous open internal frame on this desktop.
-   *
+   * <p>
    * The internal frame will be made visible and have focus.
    *
    * @see #next()
